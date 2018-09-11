@@ -25,8 +25,8 @@
               <div slot="append">
                 <v-spacer></v-spacer>
 
-                <v-btn icon>
-                  <v-icon>mdi-pin</v-icon>
+                <v-btn small icon>
+                  <v-icon small color="grey">mdi-pin</v-icon>
                 </v-btn>
               </div>
             </v-text-field>
@@ -39,32 +39,32 @@
       </v-card-title>
 
       <v-card-actions>
-        <v-btn icon>
-          <v-icon>mdi-reminder</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-reminder</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-account-plus</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-account-plus</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-palette</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-palette</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>image</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">image</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-package-down</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-package-down</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-dots-vertical</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-undo</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-undo</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-redo</v-icon>
+        <v-btn small icon>
+          <v-icon small color="grey">mdi-redo</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click="close" flat color="grey">关闭</v-btn>
+        <v-btn @click="close" small flat color="grey">关闭</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>

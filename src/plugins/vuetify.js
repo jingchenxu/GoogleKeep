@@ -21,7 +21,9 @@ import {
   VSelect,
   VAutocomplete,
   VRadioGroup,
-  VTextarea
+  VTextarea,
+  VBadge,
+  VMenu
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -47,7 +49,9 @@ Vue.use(Vuetify, {
     VSelect,
     VAutocomplete,
     VRadioGroup,
-    VTextarea
+    VTextarea,
+    VBadge,
+    VMenu
   },
   theme: {
     primary: '#ee44aa',

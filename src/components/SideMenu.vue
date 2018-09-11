@@ -67,19 +67,19 @@ export default {
   data () {
     return {
       items: [
-        { icon: 'lightbulb_outline', text: 'Notes', name: 'notes', params: {} },
-        { icon: 'touch_app', text: 'Reminders', name: 'reminders', params: {} },
+        { icon: 'lightbulb_outline', text: 'Notes', name: 'notes', params: {}, isModal: false },
+        { icon: 'touch_app', text: 'Reminders', name: 'reminders', params: {}, isModal: false },
         { divider: true },
         { heading: 'Labels' },
-        { icon: 'add', text: 'Create new label', name: 'newLabel', params: {} },
+        { icon: 'add', text: 'Create new label', name: 'newLabel', params: {}, isModal: false },
         { divider: true },
-        { icon: 'archive', text: 'Archive', name: 'archive', params: {} },
-        { icon: 'delete', text: 'Trash', name: 'trash', params: {} },
+        { icon: 'archive', text: 'Archive', name: 'archive', params: {}, isModal: false },
+        { icon: 'delete', text: 'Trash', name: 'trash', params: {}, isModal: false },
         { divider: true },
-        { icon: 'settings', text: 'Settings', name: 'settings', params: {} },
-        { icon: 'help', text: 'Help', name: 'help', params: {} },
-        { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {} },
-        { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {} }
+        { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: false },
+        { icon: 'help', text: 'Help', name: 'help', params: {}, isModal: false },
+        { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isModal: false },
+        { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: false }
       ],
       dialogm1: '',
       dialog: false
@@ -87,10 +87,11 @@ export default {
   },
   methods: {
     menuClick (item) {
-      console.dir(item)
-      this.$router.push(
-        item
-      )
+      if (item.isModal) {
+        console.log('即将弹出modal框')
+      } else {
+        this.$router.push(item)
+      }
     },
     addLable () {
       this.dialog = true

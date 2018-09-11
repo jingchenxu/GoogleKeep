@@ -13,7 +13,7 @@ function createWindow () {
   win = new BrowserWindow({ width: 800, height: 600 })
 
   // 然后加载应用的 index.html。
-  win.loadURL('http://localhost:8080')
+  win.loadURL('http://localhost:8082')
 
   // 打开开发者工具
   win.webContents.openDevTools()
