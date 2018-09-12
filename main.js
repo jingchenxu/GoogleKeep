@@ -1,6 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  ipcMain
+} = require('electron')
 const LoadConfig = require('./electron/LoadConfig')
 const DBconnection = require('./electron/DBconnection')
+const StorageInit = require('./electron/StorageInit')
 let fs = require('fs')
 let path = require('path')
 
@@ -12,24 +17,25 @@ function createWindow () {
   // 创建浏览器窗口。
   win = {}
 
-  if (process.NODE_ENV === 'production') {
-    win = new BrowserWindow({ width: 800, height: 600 })
-    win.loadURL(`file://${__dirname}/dist/index.html`)
-  } else {
-    win = new BrowserWindow({ width: 1200, height: 700 })
+  if (process.env.NODE_ENV === 'devlopment') {
+    win = new BrowserWindow({
+      width: 1200,
+      height: 700
+    })
     win.loadURL('http://localhost:8088')
     // 打开开发者工具
     win.webContents.openDevTools()
+  } else {
+    win = new BrowserWindow({
+      width: 800,
+      height: 600
+    })
+    win.loadURL(`file://${__dirname}/dist/index.html`)
   }
 
-  // 然后加载应用的 index.html。
-  // win.loadURL('http://localhost:8082')
-  // win.loadFile('./dist/index.html')
-  // win.loadURL(`file://${__dirname}/dist/index.html`)
-
+  // 如果用户为注册用户 则与服务器同步数据
   // 读取本地文件
   let config = new LoadConfig()
-  console.log('+++++++++++++', config.host)
   // 创建数据库连接
   let connection = new DBconnection(config.host, config.port, config.username, config.password, config.database)
   connection.makeConnection()
@@ -49,15 +55,6 @@ function createWindow () {
     // 与此同时，你应该删除相应的元素。
     win = null
   })
-
-  // fs.readFile(path.join(__dirname, 'package.json'), 'utf8', function(err, data){
-  //   if (err) {
-  //     console.log('文件加载失败')
-  //   } else {
-  //     console.dir(data)
-  //     console.log('文件加载成功')
-  //   }
-  // })
 }
 
 // Electron 会在初始化后并准备
@@ -85,7 +82,17 @@ app.on('activate', () => {
 // 在这个文件中，你可以续写应用剩下主进程代码。
 // 也可以拆分成几个文件，然后用 require 导入。
 
-ipcMain.on('click', (event, value) => {
-  console.log('=============================')
-  console.log(value)
+// 在页面渲染完成后，通知主进程将数据给他
+ipcMain.on('renderFinish', (event, value) => {
+  console.log('--------->', 'render finished', value)
+})
+
+// 添加note
+ipcMain.on('addNote', (event, value) => {
+  console.log('--------->', 'addNote')
+})
+
+// 修改软件配置
+ipcMain.on('updateSettings', (event, value) => {
+  console.log('--------->', 'updateSettings')
 })

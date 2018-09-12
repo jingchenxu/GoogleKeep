@@ -53,13 +53,15 @@ export default {
     ipcRenderer.on('loadTable', (event, arg) => {
       console.log('获取到通过数据库连接加载到的列表数据')
       console.dir(arg)
-      me.$store.commit('getTableList', arg)
     })
   },
   data () {
     return {
       drawer: null
     }
+  },
+  mounted () {
+    ipcRenderer.send('renderFinish', 'from render')
   },
   computed: {
     listType () {

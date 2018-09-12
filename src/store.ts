@@ -2,22 +2,39 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+export interface Note {
+  name?: string,
+  type?: string,
+  title?: string,
+  content?: string,
+  status?: string,
+}
+export interface State {
+  noteList: Array<Note>,
+  listType: string
+}
+
+// 初始化state
+const state: State = {
+  noteList: new Array<Note>(),
+  listType: 'mdi-view-stream'
+}
 
 export default new Vuex.Store({
-  state: {
-    tableList: [],
-    listType: 'mdi-view-stream'
-  },
+  state: state,
   mutations: {
-    getTableList (state, ob) {
-      state.tableList = ob
-    },
-    changeListType (state, listType) {
+    changeListType (state: State, listType: string) {
       if (listType === 'mdi-view-stream') {
         state.listType = 'mdi-view-dashboard-variant'
       } else {
         state.listType = 'mdi-view-stream'
       }
+    },
+    setNoteList (state: State, noteList: Array<Note>) {
+      state.noteList = noteList
+    },
+    addNote (state: State, note: Note) {
+      state.noteList.push(note)
     }
   },
   actions: {
