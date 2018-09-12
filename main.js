@@ -10,19 +10,28 @@ let win
 
 function createWindow () {
   // 创建浏览器窗口。
-  win = new BrowserWindow({ width: 800, height: 600 })
+  win = {}
+
+  if (process.NODE_ENV === 'production') {
+    win = new BrowserWindow({ width: 800, height: 600 })
+    win.loadURL(`file://${__dirname}/dist/index.html`)
+  } else {
+    win = new BrowserWindow({ width: 1200, height: 700 })
+    win.loadURL('http://localhost:8088')
+    // 打开开发者工具
+    win.webContents.openDevTools()
+  }
 
   // 然后加载应用的 index.html。
-  win.loadURL('http://localhost:8082')
-
-  // 打开开发者工具
-  win.webContents.openDevTools()
+  // win.loadURL('http://localhost:8082')
+  // win.loadFile('./dist/index.html')
+  // win.loadURL(`file://${__dirname}/dist/index.html`)
 
   // 读取本地文件
   let config = new LoadConfig()
   console.log('+++++++++++++', config.host)
   // 创建数据库连接
-  let connection = new DBconnection('118.24.155.81', '3308', 'root', 'xu123456', 'rosa')
+  let connection = new DBconnection(config.host, config.port, config.username, config.password, config.database)
   connection.makeConnection()
   let tableList = connection.makeSelect('show tables')
   tableList.then(function (res) {
