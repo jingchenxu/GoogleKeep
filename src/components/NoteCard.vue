@@ -7,8 +7,8 @@
         <v-btn slot="badge" small icon>
           <v-icon small color="grey">mdi-close</v-icon>
         </v-btn>
-        <div class="headline">Unlimited music now</div>
-        <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
+        <div class="headline">{{noteDetail.noteTitle}}</div>
+        <div>{{noteDetail.noteContent}}</div>
       </v-badge>
     </v-card-title>
 
@@ -59,6 +59,16 @@
 <script>
 export default {
   name: 'note-card',
+  props: {
+    noteDetail: {
+      type: Object,
+      required: false,
+      default: {
+        noteTitle: 'note title',
+        noteContent: 'note content'
+      }
+    }
+  },
   data () {
     return {
       card: { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },

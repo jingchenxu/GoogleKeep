@@ -21,7 +21,7 @@
       <v-card-title primary-title>
         <v-layout align-start row wrap>
           <v-flex xs12>
-            <v-text-field flat full-width :value="note.noteTitle" label="标题" single-line solo>
+            <v-text-field flat full-width v-model="note.noteTitle" label="标题" single-line solo>
               <div slot="append">
                 <v-spacer></v-spacer>
 
@@ -32,7 +32,7 @@
             </v-text-field>
           </v-flex>
           <v-flex xs12>
-            <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" :value="note.noteContent"></v-textarea>
+            <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
           </v-flex>
         </v-layout>
 
@@ -88,6 +88,14 @@ export default {
     },
     close () {
       this.noteType = 'list'
+      this.saveNote()
+    },
+    saveNote () {
+      let note = {
+        noteTitle: this.note.noteTitle,
+        noteContent: this.note.noteContent
+      }
+      this.$store.commit('addNote', note)
     }
   }
 }

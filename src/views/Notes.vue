@@ -8,8 +8,8 @@
       </v-flex>
       <v-flex xs1>
       </v-flex>
-      <v-flex v-for="i in 10" :key="`4${i}`" :xs4="listType" :xs12="!listType">
-        <NoteCard></NoteCard>
+      <v-flex v-for="(item, i) in noteList" :key="`4${i}`" :xs4="listType" :xs12="!listType">
+        <NoteCard :noteDetail="item"></NoteCard>
       </v-flex>
     </v-layout>
   </v-container>
@@ -31,6 +31,9 @@ export default {
   computed: {
     listType () {
       return this.$store.state.listType === 'mdi-view-stream'
+    },
+    noteList () {
+      return this.$store.state.noteList
     }
   }
 }
