@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 export interface Note {
+  id?: string,
   name?: string,
   type?: string,
   noteTitle?: string,
@@ -34,7 +35,6 @@ export default new Vuex.Store({
       state.noteList = noteList
     },
     addNote (state: State, note: Note) {
-      console.log('添加之前')
       console.dir(note)
       state.noteList.push(note)
     }

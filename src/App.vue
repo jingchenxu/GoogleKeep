@@ -61,7 +61,12 @@ export default {
     }
   },
   mounted () {
+    let me = this
     ipcRenderer.send('renderFinish', 'from render')
+    ipcRenderer.on('initNoteList', (event, arg) => {
+      console.dir(arg)
+      me.$store.commit('setNoteList', arg)
+    })
   },
   computed: {
     listType () {

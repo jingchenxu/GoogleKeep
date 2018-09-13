@@ -21,7 +21,7 @@
       <v-card-title primary-title>
         <v-layout align-start row wrap>
           <v-flex xs12>
-            <v-text-field flat full-width v-model="note.noteTitle" label="标题" single-line solo>
+            <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
               <div slot="append">
                 <v-spacer></v-spacer>
 
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+const {ipcRenderer} = window.require('electron')
+
 export default {
   name: 'add-card',
   data () {
@@ -93,9 +95,15 @@ export default {
     saveNote () {
       let note = {
         noteTitle: this.note.noteTitle,
-        noteContent: this.note.noteContent
+        noteContent: this.note.noteContent,
+        id: Number(new Date())
       }
-      this.$store.commit('addNote', note)
+      if (this.note.noteTitle || this.note.noteContent) {
+        ipcRenderer.send('addNote', note)
+        this.$store.commit('addNote', note)
+        this.note.noteTitle = ''
+        this.note.noteContent = ''
+      }
     }
   }
 }

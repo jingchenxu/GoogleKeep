@@ -1,10 +1,10 @@
 <template>
 
-  <v-card @click="noteClick" hover active-class="noteDisabled noteActive">
+  <v-card @click="noteClick" width=200 hover active-class="noteDisabled noteActive">
 
     <v-card-title>
       <v-badge color="white" left>
-        <v-btn slot="badge" small icon>
+        <v-btn @click="deleteNote" slot="badge" small icon>
           <v-icon small color="grey">mdi-close</v-icon>
         </v-btn>
         <div class="headline">{{noteDetail.noteTitle}}</div>
@@ -83,6 +83,10 @@ export default {
   methods: {
     noteClick () {
       console.log('单个笔记被点击')
+    },
+    deleteNote () {
+      // 删除note
+      console.log('删除note')
     }
   }
 }

@@ -7,12 +7,17 @@
 const Nedb = require('nedb')
 
 class StorageInit {
-  constructor (filePath = '/data/rosa.db', autoLoad = true) {
+  constructor (filePath = './data/rosa.db', autoLoad = true) {
     this.filepath = filePath
     this.autoload = autoLoad
     this.db = new Nedb({
-      filepath: this.filepath,
-      autoload: this.autoload
+      filename: 'rosa',
+      filepath: './data/rosa.db',
+      autoload: true,
+      inMemoryOnly: false,
+      onload: function () {
+        console.log('database loading')
+      }
     })
   }
 
@@ -63,7 +68,17 @@ class StorageInit {
   }
 
   REMOVE (DATA) {
-
+    let me = this
+    let result = new Promise(function (resolve, reject) {
+      me.db.remove(DATA, (err, ret) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(ret)
+        }
+      })
+    })
+    return result
   }
 
   DELETE (DATA) {

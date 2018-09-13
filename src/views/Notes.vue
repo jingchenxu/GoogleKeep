@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container fluid fill-height grid-list-md>
     <v-layout align-start row wrap justify-space-between>
       <v-flex xs1>
       </v-flex>

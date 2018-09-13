@@ -85,11 +85,20 @@ app.on('activate', () => {
 // 在页面渲染完成后，通知主进程将数据给他
 ipcMain.on('renderFinish', (event, value) => {
   console.log('--------->', 'render finished', value)
+  let storage = new StorageInit()
+  storage.SEARCH({}).then(function (res) {
+    console.log('--------->', 'load pageList')
+    win.webContents.send('initNoteList', res)
+  })
 })
 
 // 添加note
 ipcMain.on('addNote', (event, value) => {
   console.log('--------->', 'addNote')
+  let storage = new StorageInit()
+  storage.INSERT(value).then(function (res) {
+    console.dir(res)
+  })
 })
 
 // 修改软件配置
