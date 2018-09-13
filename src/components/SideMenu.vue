@@ -30,26 +30,7 @@
         <v-card-title>修改标签</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="height: 300px;">
-          <v-radio-group v-model="dialogm1" column>
-            <v-radio label="Bahamas, The" value="bahamas"></v-radio>
-            <v-radio label="Bahrain" value="bahrain"></v-radio>
-            <v-radio label="Bangladesh" value="bangladesh"></v-radio>
-            <v-radio label="Barbados" value="barbados"></v-radio>
-            <v-radio label="Belarus" value="belarus"></v-radio>
-            <v-radio label="Belgium" value="belgium"></v-radio>
-            <v-radio label="Belize" value="belize"></v-radio>
-            <v-radio label="Benin" value="benin"></v-radio>
-            <v-radio label="Bhutan" value="bhutan"></v-radio>
-            <v-radio label="Bolivia" value="bolivia"></v-radio>
-            <v-radio label="Bosnia and Herzegovina" value="bosnia"></v-radio>
-            <v-radio label="Botswana" value="botswana"></v-radio>
-            <v-radio label="Brazil" value="brazil"></v-radio>
-            <v-radio label="Brunei" value="brunei"></v-radio>
-            <v-radio label="Bulgaria" value="bulgaria"></v-radio>
-            <v-radio label="Burkina Faso" value="burkina"></v-radio>
-            <v-radio label="Burma" value="burma"></v-radio>
-            <v-radio label="Burundi" value="burundi"></v-radio>
-          </v-radio-group>
+          <LabelItem :key="index" v-for="(item, index) of labelList"></LabelItem>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
@@ -62,8 +43,13 @@
 </template>
 
 <script>
+import LabelItem from './LabelItem'
+
 export default {
   name: 'side-menu',
+  components: {
+    LabelItem
+  },
   data () {
     return {
       items: [
@@ -82,7 +68,19 @@ export default {
         { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: false }
       ],
       dialogm1: '',
-      dialog: false
+      dialog: false,
+      labelList: [
+        {labelId: '1', labelName: '测试'},
+        {labelId: '2', labelName: '测试'},
+        {labelId: '3', labelName: '测试'},
+        {labelId: '4', labelName: '测试'},
+        {labelId: '5', labelName: '测试'},
+        {labelId: '6', labelName: '测试'},
+        {labelId: '7', labelName: '测试'},
+        {labelId: '8', labelName: '测试'},
+        {labelId: '9', labelName: '测试'},
+        {labelId: '10', labelName: '测试'}
+      ]
     }
   },
   methods: {

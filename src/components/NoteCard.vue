@@ -57,6 +57,8 @@
 </template>
 
 <script>
+let { ipcRenderer } = window.require('electron')
+
 export default {
   name: 'note-card',
   props: {
@@ -87,6 +89,8 @@ export default {
     deleteNote () {
       // 删除note
       console.log('删除note')
+      this.$store.commit('deleteNote', this._props.noteDetail)
+      ipcRenderer.send('deleteNote', this._props.noteDetail)
     }
   }
 }

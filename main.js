@@ -101,6 +101,15 @@ ipcMain.on('addNote', (event, value) => {
   })
 })
 
+// 删除note
+ipcMain.on('deleteNote', (event, value) => {
+  console.log('--------->', 'deleteNote')
+  let storage = new StorageInit()
+  storage.REMOVE(value).then(function (res) {
+    console.dir(res)
+  })
+})
+
 // 修改软件配置
 ipcMain.on('updateSettings', (event, value) => {
   console.log('--------->', 'updateSettings')

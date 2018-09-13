@@ -23,7 +23,8 @@ import {
   VRadioGroup,
   VTextarea,
   VBadge,
-  VMenu
+  VMenu,
+  VForm
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -51,7 +52,8 @@ Vue.use(Vuetify, {
     VRadioGroup,
     VTextarea,
     VBadge,
-    VMenu
+    VMenu,
+    VForm
   },
   theme: {
     primary: '#ee44aa',

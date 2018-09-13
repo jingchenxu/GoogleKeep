@@ -37,6 +37,13 @@ export default new Vuex.Store({
     addNote (state: State, note: Note) {
       console.dir(note)
       state.noteList.push(note)
+    },
+    deleteNote (state: State, note: Note) {
+      // TODO 此处的算法需要优化
+      let temp: Array<Note>;
+      temp = state.noteList.filter(item => item.id !== note.id)
+      console.dir(temp)
+      state.noteList = temp
     }
   },
   actions: {
