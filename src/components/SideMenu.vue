@@ -25,30 +25,20 @@
         </v-list-tile>
       </template>
     </v-list>
-    <v-dialog v-model="dialog" scrollable max-width="300px">
-      <v-card>
-        <v-card-title>修改标签</v-card-title>
-        <v-divider></v-divider>
-        <v-card-text style="height: 300px;">
-          <LabelItem :key="index" v-for="(item, index) of labelList"></LabelItem>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <Setting/>
+    <AddLabel/>
   </div>
 </template>
 
 <script>
-import LabelItem from './LabelItem'
+import Setting from './modalPage/Setting'
+import AddLabel from './modalPage/AddLabel'
 
 export default {
   name: 'side-menu',
   components: {
-    LabelItem
+    Setting,
+    AddLabel
   },
   data () {
     return {
@@ -62,37 +52,24 @@ export default {
         { icon: 'archive', text: 'Archive', name: 'archive', params: {}, isModal: false },
         { icon: 'delete', text: 'Trash', name: 'trash', params: {}, isModal: false },
         { divider: true },
-        { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: false },
+        { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: true, emitName: 'showSetting' },
         { icon: 'help', text: 'Help', name: 'help', params: {}, isModal: false },
         { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isModal: false },
         { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: false }
-      ],
-      dialogm1: '',
-      dialog: false,
-      labelList: [
-        {labelId: '1', labelName: '测试'},
-        {labelId: '2', labelName: '测试'},
-        {labelId: '3', labelName: '测试'},
-        {labelId: '4', labelName: '测试'},
-        {labelId: '5', labelName: '测试'},
-        {labelId: '6', labelName: '测试'},
-        {labelId: '7', labelName: '测试'},
-        {labelId: '8', labelName: '测试'},
-        {labelId: '9', labelName: '测试'},
-        {labelId: '10', labelName: '测试'}
       ]
     }
   },
   methods: {
     menuClick (item) {
+      let me = this
       if (item.isModal) {
-        console.log('即将弹出modal框')
+        me.$bus.$emit(item.emitName)
       } else {
         this.$router.push(item)
       }
     },
     addLable () {
-      this.dialog = true
+      this.$bus.$emit('showAddLabel')
     }
   }
 }

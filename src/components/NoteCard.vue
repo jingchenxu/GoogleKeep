@@ -1,8 +1,6 @@
 <template>
-
-  <v-card @click="noteClick" width=200 hover active-class="noteDisabled noteActive">
-
-    <v-card-title>
+  <v-card width=200 hover active-class="noteDisabled noteActive">
+    <v-card-title @click="noteClick">
       <v-badge color="white" left>
         <v-btn @click="deleteNote" slot="badge" small icon>
           <v-icon small color="grey">mdi-close</v-icon>
@@ -11,7 +9,6 @@
         <div>{{noteDetail.noteContent}}</div>
       </v-badge>
     </v-card-title>
-
     <v-card-actions>
       <v-tooltip bottom>
         <v-btn slot="activator" small icon>
@@ -51,9 +48,59 @@
         </v-list>
       </v-menu>
     </v-card-actions>
+    <v-dialog v-model="dialog">
+      <v-card>
+        <v-card-title primary-title>
+          <v-layout align-start row wrap>
+            <v-flex xs12>
+              <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
+                <div slot="append">
+                  <v-spacer></v-spacer>
 
+                  <v-btn small icon>
+                    <v-icon small color="grey">mdi-pin</v-icon>
+                  </v-btn>
+                </div>
+              </v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
+            </v-flex>
+          </v-layout>
+
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-reminder</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-account-plus</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-palette</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">image</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-package-down</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-dots-vertical</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-undo</v-icon>
+          </v-btn>
+          <v-btn small icon>
+            <v-icon small color="grey">mdi-redo</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn @click="close" small flat color="grey">关闭</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
-
 </template>
 
 <script>
@@ -79,18 +126,36 @@ export default {
         { title: '添加标签' },
         { title: '添加绘图' },
         { title: '复制' }
-      ]
+      ],
+      dialog: false,
+      note: {}
     }
+  },
+  mounted () {
+    this.note = this._props.noteDetail
   },
   methods: {
     noteClick () {
       console.log('单个笔记被点击')
+      this.dialog = true
     },
     deleteNote () {
       // 删除note
       console.log('删除note')
       this.$store.commit('deleteNote', this._props.noteDetail)
       ipcRenderer.send('deleteNote', this._props.noteDetail)
+      // 发送系统消息
+      const notification = {
+        title: '基本通知',
+        body: '短消息部分'
+      }
+      const myNotification = new window.Notification(notification.title, notification)
+      myNotification.onclick = () => {
+        console.log('Notification clicked')
+      }
+    },
+    close () {
+      this.dialog = false
     }
   }
 }

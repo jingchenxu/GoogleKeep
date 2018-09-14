@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import './utils/vueplugin'
 import InputWithButton from './components/vuetifyExtend/InputWithButton.vue'
 
 Vue.config.productionTip = false

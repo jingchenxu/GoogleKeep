@@ -45,10 +45,16 @@
 <script>
 export default {
   name: 'setting',
-  props: {
-    type: Boolean,
-    required: true,
-    default: false
+  data () {
+    return {
+      dialog: false
+    }
+  },
+  mounted () {
+    let me = this
+    this.$bus.$on('showSetting', function(arg) {
+      me.dialog = true
+    })
   }
 }
 </script>
