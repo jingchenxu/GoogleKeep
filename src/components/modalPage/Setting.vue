@@ -1,6 +1,5 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="300px">
-    <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
     <v-card>
       <v-card-title>
         <span class="headline">设置</span>

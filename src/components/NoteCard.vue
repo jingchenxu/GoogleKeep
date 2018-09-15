@@ -1,5 +1,5 @@
 <template>
-  <v-card width=200 hover active-class="noteDisabled noteActive">
+  <v-card hover active-class="noteDisabled noteActive">
     <v-card-title @click="noteClick">
       <v-badge color="white" left>
         <v-btn @click="deleteNote" slot="badge" small icon>

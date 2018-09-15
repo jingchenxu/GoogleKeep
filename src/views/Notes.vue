@@ -1,12 +1,14 @@
 <template>
-  <v-container fluid fill-height grid-list-md>
+  <v-container fluid align-content-start align-start grid-list-md>
     <v-layout align-start row wrap justify-space-between>
       <v-flex xs1>
+        <v-spacer></v-spacer>
       </v-flex>
       <v-flex xs10>
         <AddCard></AddCard>
       </v-flex>
       <v-flex xs1>
+        <v-spacer></v-spacer>
       </v-flex>
       <v-flex v-for="(item, i) in noteList" :key="`4${i}`" :xs4="listType" :xs12="!listType">
         <NoteCard :noteDetail="item"></NoteCard>
