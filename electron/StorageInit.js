@@ -12,7 +12,7 @@ class StorageInit {
     this.autoload = autoLoad
     this.db = new Nedb({
       filename: 'rosa',
-      filepath: './data/rosa.db',
+      filepath: `file://${__dirname}/rosa.db`,
       autoload: true,
       inMemoryOnly: false,
       onload: function () {

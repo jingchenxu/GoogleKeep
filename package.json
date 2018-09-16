@@ -12,7 +12,8 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "package-win": "cross-env NODE_ENV=production electron-packager . GoogleKeep --platform=win32 --arch=x64 --out ./outApp --icon=./dist/favicon.ico --app-version=0.0.1 --electron-version=2.0.8 --overwrite"
+    "package-win": "cross-env NODE_ENV=production electron-packager . GoogleKeep --platform=win32 --arch=x64 --out ./outApp --icon=./dist/favicon.ico --app-version=0.0.1 --electron-version=2.0.8 --overwrite",
+    "package-mac": "cross-env NODE_ENV=production electron-packager . GoogleKeep --platform=darwin --arch=x64 --out ./outApp --icon=app.icns --app-version=0.0.1 --electron-version=2.0.8 --overwrite"
   },
   "dependencies": {
     "electron": "^2.0.8",
