@@ -1,6 +1,6 @@
 <template>
   <div class="note-grid">
-    <waterfall :align="align" :line-gap="200" :min-line-gap="100" :max-line-gap="220" :single-max-width="300" :watch="items" @reflowed="reflowed" ref="waterfall">
+    <waterfall :align="align" :line-gap="200" :min-line-gap="100" :max-line-gap="220" :single-max-width="300" :watch="noteList" @reflowed="reflowed" ref="waterfall">
       <waterfall-slot v-for="(item, index) in noteList" :width="item.width" :height="item.height" :order="index" :key="item.index" move-class="item-move">
         <div class="item" :style="item.style" :index="item.index">
           <NoteCard :noteDetail="item"/>

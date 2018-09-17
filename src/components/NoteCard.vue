@@ -1,5 +1,5 @@
 <template>
-  <v-card ref="notecard" hover active-class="noteDisabled noteActive">
+  <v-card :id="noteDetail.id" ref="notecard" hover active-class="noteDisabled noteActive">
     <v-card-title @click="noteClick">
       <v-badge color="white" left>
         <v-btn @click="deleteNote" slot="badge" small icon>
@@ -135,7 +135,9 @@ export default {
     let me = this
     me.updateNoteSize()
     window.onresize = function () {
-      me.updateNoteSize()
+      setTimeout( function() {
+        me.updateNoteSize()
+      },1000)
     }
   },
   computed: {
@@ -176,25 +178,29 @@ export default {
       this.dialog = false
     },
     getNoteWidth () {
-      let width = window.getComputedStyle(this.$refs.notecard.$el).width
+      let me = this
+      let width = window.getComputedStyle(document.getElementById(me.noteDetail.id)).width
+      console.log(width)
       return parseInt(width.substring(0, width.length-2))
     },
     getNoteHeight () {
-      let height = window.getComputedStyle(this.$refs.notecard.$el).height
+      let me = this
+      let height = window.getComputedStyle(document.getElementById(me.noteDetail.id)).height
+      console.log(height)
       return parseInt(height.substring(0, height.length-2))
     },
     updateNoteSize () {
       let me = this
-      console.log(this.getNoteWidth(), this.getNoteHeight())
+      // console.log(this.getNoteWidth(), this.getNoteHeight())
       // 开始更行vuex中对应的数据
       let noteList = me.$store.state.noteList
       for (let i=0; i<noteList.length; i++) {
         if (noteList[i].id === me._props.noteDetail.id ) {
-          noteList[i].width = me.getNoteWidth()
-          noteList[i].height = me.getNoteHeight()
+          noteList[i].width = me.getNoteWidth() ? me.getNoteWidth() : 300
+          noteList[i].height = me.getNoteHeight() ?  me.getNoteHeight() : 400
         }
       }
-      this.$store.commit('setNoteList', noteList)
+      me.$store.commit('setNoteList', noteList)
     }
   }
 }
