@@ -11,7 +11,7 @@
     </v-navigation-drawer>
     <v-toolbar color="amber" app fixed clipped-left>
       <v-toolbar-side-icon @click.native="drawer = !drawer"></v-toolbar-side-icon>
-      <span class="title ml-3 mr-5">Google&nbsp;<span class="font-weight-light">Keep</span></span>
+      <span class="title ml-3 mr-5">GoogleKeep</span>
       <v-spacer></v-spacer>
 
       <v-btn icon>

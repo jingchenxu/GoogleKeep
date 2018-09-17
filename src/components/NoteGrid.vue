@@ -1,26 +1,38 @@
 <template>
   <div class="note-grid">
     <waterfall :align="align" :line-gap="200" :min-line-gap="100" :max-line-gap="220" :single-max-width="300" :watch="items" @reflowed="reflowed" ref="waterfall">
-      <!-- each component is wrapped by a waterfall slot -->
-      <waterfall-slot v-for="(item, index) in items" :width="item.width" :height="item.height" :order="index" :key="item.index" move-class="item-move">
-        <div class="item" :style="item.style" :index="item.index"></div>
+      <waterfall-slot v-for="(item, index) in noteList" :width="item.width" :height="item.height" :order="index" :key="item.index" move-class="item-move">
+        <div class="item" :style="item.style" :index="item.index">
+          <NoteCard :noteDetail="item"/>
+        </div>
       </waterfall-slot>
     </waterfall>
   </div>
 </template>
 
 <script>
-import Waterfall from 'vue-waterfall/lib/waterfall'
-import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot'
+import Waterfall from './Waterfall'
+import WaterfallSlot from './WaterSlot'
+import NoteCard from './NoteCard'
 import utils from '../utils/utils'
 
 const ItemFactory = utils.ItemFactory()
 
 export default {
   name: 'note-grid',
+  props: {
+    noteList: {
+      type: Array,
+      required: false,
+      default: function () {
+        return []
+      }
+    }
+  },
   components: {
     Waterfall,
-    WaterfallSlot
+    WaterfallSlot,
+    NoteCard
   },
   data () {
     return {
@@ -43,20 +55,19 @@ export default {
     },
     reflowed: function () {
       this.isBusy = false
-    }
+    },
   },
   mounted () {
-    let me = this
-    document.body.addEventListener('click', function () {
-      me.shuffle()
-      // app.$refs.waterfall.$emit('reflow') // manually trigger reflow action
-    }, false)
-    window.addEventListener('scroll', function () {
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      if (scrollTop + window.innerHeight >= document.body.clientHeight) {
-        me.addItems()
-      }
-    })
+    // let me = this
+    // document.body.addEventListener('click', function () {
+    //   me.shuffle()
+    // }, false)
+    // window.addEventListener('scroll', function () {
+    //   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    //   if (scrollTop + window.innerHeight >= document.body.clientHeight) {
+    //     me.addItems()
+    //   }
+    // })
   }
 }
 </script>

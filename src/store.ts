@@ -9,6 +9,8 @@ export interface Note {
   noteTitle?: string,
   noteContent?: string,
   status?: string,
+  width?: Number,
+  height?: Number
 }
 export interface State {
   noteList: Array<Note>,

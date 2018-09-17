@@ -96,6 +96,8 @@ export default {
       let note = {
         noteTitle: this.note.noteTitle,
         noteContent: this.note.noteContent,
+        width: 300,
+        height: 400,
         id: Number(new Date())
       }
       if (this.note.noteTitle || this.note.noteContent) {
