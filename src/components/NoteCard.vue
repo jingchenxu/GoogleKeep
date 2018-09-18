@@ -144,35 +144,31 @@ export default {
     noteWidth () {
       let me = this
       let refid = this._props.noteDetail.id
-      console.log(refid)
       return 400
     },
     noteHeight () {
       let me = this
       let refid = this._props.noteDetail.id
-      console.log(refid)
       return 400
     }
   },
   methods: {
     noteClick () {
-      console.log('单个笔记被点击')
       this.dialog = true
     },
     deleteNote () {
       // 删除note
-      console.log('删除note')
       this.$store.commit('deleteNote', this._props.noteDetail)
       ipcRenderer.send('deleteNote', this._props.noteDetail)
       // 发送系统消息
-      const notification = {
-        title: '基本通知',
-        body: '短消息部分'
-      }
-      const myNotification = new window.Notification(notification.title, notification)
-      myNotification.onclick = () => {
-        console.log('Notification clicked')
-      }
+      // const notification = {
+      //   title: '基本通知',
+      //   body: '短消息部分'
+      // }
+      // const myNotification = new window.Notification(notification.title, notification)
+      // myNotification.onclick = () => {
+      //   console.log('Notification clicked')
+      // }
     },
     close () {
       this.dialog = false
@@ -180,13 +176,11 @@ export default {
     getNoteWidth () {
       let me = this
       let width = window.getComputedStyle(document.getElementById(me.noteDetail.id)).width
-      console.log(width)
       return parseInt(width.substring(0, width.length-2))
     },
     getNoteHeight () {
       let me = this
       let height = window.getComputedStyle(document.getElementById(me.noteDetail.id)).height
-      console.log(height)
       return parseInt(height.substring(0, height.length-2))
     },
     updateNoteSize () {
@@ -218,5 +212,12 @@ export default {
 }
 .noteActive .v-card__actions {
   visibility: hidden;
+}
+.headline {
+  font-family: 'Roboto Condensed',arial,sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 23px;
+  min-height: 38px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="add-card">
     <v-text-field v-if="noteType === 'list'" @focus="addNote" label="添加记事..." single-line solo>
       <div slot="append">
         <v-spacer></v-spacer>
@@ -67,7 +67,7 @@
         <v-btn @click="close" small flat color="grey">关闭</v-btn>
       </v-card-actions>
     </v-card>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -110,3 +110,28 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@media screen and (min-width: 870px) {
+  .add-card {
+    width: 600px;
+    position: relative;
+    margin: 32px auto 16px auto;
+  }
+}
+@media screen and (max-width: 870px) {
+  .add-card {
+    width: 496px;
+    position: relative;
+    margin: 32px auto 16px auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .add-card {
+    width: 100%;
+    position: relative;
+    margin: 32px auto 16px auto;
+  }
+}
+</style>
+

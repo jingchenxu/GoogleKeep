@@ -15,8 +15,13 @@ class StorageInit {
       filepath: './data/rosa.db',
       autoload: true,
       inMemoryOnly: false,
-      onload: function () {
-        console.log('database loading')
+      timestampData: true,
+      onload: function (error) {
+        if (error) {
+          console.dir(error)
+        } else {
+          console.log('database loading')
+        }
       }
     })
   }
@@ -70,7 +75,7 @@ class StorageInit {
   REMOVE (DATA) {
     let me = this
     let result = new Promise(function (resolve, reject) {
-      me.db.remove(DATA, (err, ret) => {
+      me.db.remove({}, { muti: true }, (err, ret) => {
         if (err) {
           reject(err)
         } else {
