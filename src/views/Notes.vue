@@ -1,31 +1,21 @@
 <template>
-  <v-container fluid align-content-start align-start grid-list-md>
-    <v-layout align-start row wrap justify-space-between>
-      <v-flex xs1>
-        <v-spacer></v-spacer>
-      </v-flex>
-      <v-flex xs10>
-        <AddCard></AddCard>
-      </v-flex>
-      <v-flex xs1>
-        <v-spacer></v-spacer>
-      </v-flex>
-      <v-flex v-for="(item, i) in noteList" :key="`4${i}`" :xs4="listType" :xs12="!listType">
-        <NoteCard :noteDetail="item"></NoteCard>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div class="notes">
+    <AddCard></AddCard>
+    <Downloads/>
+  </div>
 </template>
 
 <script>
 import NoteCard from '../components/NoteCard.vue'
 import AddCard from '../components/AddCard.vue'
+import Downloads from './Downloads.vue'
 
 export default {
   name: 'notes',
   components: {
     NoteCard,
-    AddCard
+    AddCard,
+    Downloads
   },
   data () {
     return {}
@@ -40,3 +30,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.notes {
+  width: 100%;
+  height: auto;
+}
+</style>
+
