@@ -45,9 +45,12 @@
         <v-btn small icon>
           <v-icon small color="grey">mdi-account-plus</v-icon>
         </v-btn>
-        <v-btn small icon>
-          <v-icon small color="grey">mdi-palette</v-icon>
-        </v-btn>
+        <v-tooltip top>
+          <v-btn slot="activator" small icon>
+            <v-icon small color="grey">mdi-palette</v-icon>
+          </v-btn>
+          <ColorSelector/>
+        </v-tooltip>
         <v-btn small icon>
           <v-icon small color="grey">image</v-icon>
         </v-btn>
@@ -72,9 +75,13 @@
 
 <script>
 const {ipcRenderer} = window.require('electron')
+import ColorSelector from './ColorSelector'
 
 export default {
   name: 'add-card',
+  components: {
+    ColorSelector
+  },
   data () {
     return {
       noteType: 'list', // list | note | image | pen

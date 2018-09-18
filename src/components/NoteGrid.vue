@@ -1,112 +1,279 @@
 <template>
-  <div class="note-grid">
-    <waterfall :align="align" :line-gap="200" :min-line-gap="100" :max-line-gap="220" :single-max-width="300" :watch="noteList" @reflowed="reflowed" ref="waterfall">
-      <waterfall-slot v-for="(item, index) in noteList" :width="item.width" :height="item.height" :order="index" :key="item.index" move-class="item-move">
-        <div class="item" :style="item.style" :index="item.index">
-          <NoteCard :noteDetail="item"/>
-        </div>
-      </waterfall-slot>
-    </waterfall>
+<div id="waterfall" class="waterfall">
+  <div>
+    <div :key="index" v-for="(item, index) in noteList" class="item">
+      <NoteCard :noteDetail="item"></NoteCard>
+    </div>
+    <div class="list-title">
+      已固定的记事
+    </div>
   </div>
+</div> 
 </template>
 
 <script>
-import Waterfall from './Waterfall'
-import WaterfallSlot from './WaterSlot'
-import NoteCard from './NoteCard'
-import utils from '../utils/utils'
-
-const ItemFactory = utils.ItemFactory()
+import NoteCard from './NoteCard.vue'
+import { setTimeout } from 'timers';
 
 export default {
-  name: 'note-grid',
-  props: {
-    noteList: {
-      type: Array,
-      required: false,
-      default: function () {
-        return []
-      }
-    }
-  },
+  name: 'downloads',
   components: {
-    Waterfall,
-    WaterfallSlot,
     NoteCard
   },
   data () {
     return {
-      align: 'center',
-      items: ItemFactory.get(100),
-      isBusy: false
+      sizeType: 1,
+      heightList: [],
+      items: []
+    }
+  },
+  mounted () {
+    this.delayUpdate()
+  },
+  watch: {
+    noteList () {
+      this.delayUpdate()
+    }
+  },
+  computed: {
+    noteList () {
+      return this.$store.state.noteList
     }
   },
   methods: {
-    addItems: function () {
-      if (!this.isBusy && this.items.length < 500) {
-        this.isBusy = true
-        this.items.push.apply(this.items, ItemFactory.get(50))
+    /**
+     * @author jingchenxu2015@gmail.com
+     * @description 等待页面dom渲染完成
+     */
+    delayUpdate () {
+      let me = this
+      setTimeout(function(){
+        me.updateLayout()
+        window.onresize = function () {
+          me.updateLayout()
+        }
+      },1)
+    },
+    /**
+     * @author jingchenxu2015@gmail.com
+     * @description 更新页面布局 只有在页面布局发生大的改动的时候才会触发
+     */
+    updateLayout () {
+      let me = this
+      let items = document.getElementsByClassName("item")
+      me.items = items
+      let width = document.body.clientWidth
+      let heightList
+      if (width >= 870) {
+        me.heightList = [0, 0, 0]
+      }
+      if (width >= 600 && width < 870) {
+        me.heightList = [0, 0]
+      }
+      if (width < 600) {
+        me.heightList = [0]
+      }
+      for (let i = 0; i<items.length; i++) {
+        let itemHeight
+        if (i>0) {
+          itemHeight = items[i-1].offsetHeight
+        }
+        if (width >= 870) {
+          me.sizeType = 3
+          let x = 0
+          let y = 0
+          let ob = me.countPosition3(i, x, y, itemHeight)
+          items[i].style.transform = 'translate('+ob.x+'px'+','+ob.y+'px'+')'
+        }
+        if (width >= 600 && width < 870) {
+          me.sizeType = 2
+          let x = 0
+          let y = 0
+          let ob = me.countPosition2(i, x, y, itemHeight)
+          items[i].style.transform = 'translate('+ob.x+'px'+','+ob.y+'px'+')'
+        }
+        if (width < 600) {
+          me.sizeType = 1
+          let x = 0
+          let y = 0
+          let ob = me.countPosition1(i, x, y, itemHeight)
+          items[i].style.transform = 'translate('+ob.x+'px'+','+ob.y+'px'+')'
+        }
       }
     },
-    shuffle: function () {
-      this.items.sort(function () {
-        return Math.random() - 0.5
-      })
+    /**
+     * @author jingchenxu2015@gmail.com
+     * @description 计算card的position 偶数为true
+     */
+    countPosition3 (index, x, y, itemHeight) {
+      let me = this
+      
+      let order = index%3
+      if (order === 0) {
+        x = 0
+        if (index>0) {
+          itemHeight = this.items[index-3].offsetHeight
+          me.heightList[0] = me.heightList[0] + itemHeight + 16
+        }
+        y = me.heightList[0]
+      }
+      if (order === 1) {
+        x = 256
+        if (index>1) {
+          itemHeight = this.items[index-3].offsetHeight
+          me.heightList[1] = me.heightList[1] + itemHeight + 16
+        }
+        y = me.heightList[1]
+      }
+      if (order === 2) {
+        x = 512
+        if (index>2) {
+          itemHeight = this.items[index-3].offsetHeight
+          me.heightList[2] = me.heightList[2] + itemHeight + 16
+        }
+        y = me.heightList[2]
+      }
+      return {
+        x,
+        y
+      }
     },
-    reflowed: function () {
-      this.isBusy = false
+    /**
+     * @author jingchenxu2015@gmail.com
+     * @description 计算card的position 偶数为true
+     */
+    countPosition2 (index, x, y, itemHeight) {
+      let me = this
+      
+      if (me._isOdd(index)) {
+        x = 0;
+        if (index>0) {
+          itemHeight = this.items[index-2].offsetHeight
+          me.heightList[0] = me.heightList[0] + itemHeight + 16
+        }
+        y = me.heightList[0]
+      } else {
+        x = 256
+        if (index>1) {
+          itemHeight = this.items[index-2].offsetHeight
+          me.heightList[1] = me.heightList[1] + itemHeight + 16
+        }
+        y = me.heightList[1]
+      }
+      return {
+        x,
+        y
+      }
     },
-  },
-  mounted () {
-    // let me = this
-    // document.body.addEventListener('click', function () {
-    //   me.shuffle()
-    // }, false)
-    // window.addEventListener('scroll', function () {
-    //   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-    //   if (scrollTop + window.innerHeight >= document.body.clientHeight) {
-    //     me.addItems()
-    //   }
-    // })
+    /**
+     * @author jingchenxu2015@gmail.com
+     * @description 计算card的position 偶数为true
+     */
+    countPosition1 (index, x, y, itemHeight) {
+      let me = this
+      x = 0
+      if (index > 0) {
+        me.heightList[0] = me.heightList[0] + itemHeight + 16
+      }
+      y = me.heightList[0]
+      return {
+        x,
+        y
+      }
+    },
+    _isOdd (number) {
+      return number%2 === 0
+    }
   }
 }
 </script>
 
 <style scoped>
-.note-grid {
-  margin: 5px;
-  width: 100%;
-  height: 100%;
+@media screen and (max-width: 1390px) {
+  /* 3列 */
+  .waterfall {
+    width: 784px;
+    margin: auto;
+  }
+  .waterfall > div {
+    position: relative;
+    height: 1000px;
+  }
+  .waterfall .item {
+    width: 240px;
+    transform: translate(0px, 40px);
+    /* height: 200px; */
+    background-color: brown;
+    margin: 16px;
+    transition-duration: .218s;
+    position: absolute;
+    transition-property: opacity,transform;
+    box-sizing: border-box;
+    opacity: 1;
+  }
+  .list-title {
+    position: absolute;
+    margin: 22px 16px;
+    top: -40px;
+  }
 }
-.item {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  font-size: 1.2em;
-  color: rgb(0, 158, 107);
+
+@media screen and (max-width: 870px) {
+  /* 2列 */
+  .waterfall {
+    width: 528px;
+    margin: auto;
+  }
+  .waterfall > div {
+    position: relative;
+    height: 1000px;
+  }
+  .waterfall .item {
+    width: 240px;
+    transform: translate(0px, 40px);
+    /* height: 200px; */
+    background-color:darkgoldenrod;
+    box-sizing: border-box;
+    margin: 16px;
+    transition-duration: .218s;
+    position: absolute;
+    transition-property: opacity,transform;
+    box-sizing: border-box;
+    opacity: 1;
+  }
+  .list-title {
+    position: absolute;
+    margin: 22px 16px;
+    top: -40px;
+  }
 }
-.item:after {
-  content: attr(index);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-}
-.wf-transition {
-  transition: opacity 0.3s ease;
-  -webkit-transition: opacity 0.3s ease;
-}
-.wf-enter {
-  opacity: 0;
-}
-.item-move {
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-  -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+
+@media screen and (max-width: 600px) {
+  /* 1列 */
+  .waterfall {
+    width: 100%;
+    margin: auto;
+    padding: 4px 0;
+  }
+  .waterfall > div {
+    position: relative;
+    height: 1000px;
+  }
+  .waterfall .item {
+    width: 100%;
+    /* height: 200px; */
+    background-color: rebeccapurple;
+    margin: 0px;
+    transition-duration: .218s;
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 1;
+  }
+  .list-title {
+    position: absolute;
+    margin: 22px 16px;
+    top: -50px;
+  }
 }
 </style>
-
 

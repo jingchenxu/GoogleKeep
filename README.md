@@ -35,3 +35,7 @@ yarn run test:unit
 ```
 yarn run test:e2e
 ```
+
+### Color list
+
+white red yellow teal cyan

@@ -74,8 +74,14 @@ class StorageInit {
 
   REMOVE (DATA) {
     let me = this
+    console.dir(DATA)
+    // id 作为主键
+    let params = {
+      id: DATA.id
+    }
     let result = new Promise(function (resolve, reject) {
-      me.db.remove({}, { muti: true }, (err, ret) => {
+      me.db.remove(params, {}, (err, ret) => {
+        console.dir(params)
         if (err) {
           reject(err)
         } else {
