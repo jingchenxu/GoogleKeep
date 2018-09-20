@@ -1,21 +1,19 @@
 <template>
   <div class="notes">
     <AddCard></AddCard>
-    <Downloads/>
+    <NoteGrid/>
   </div>
 </template>
 
 <script>
-import NoteCard from '../components/NoteCard.vue'
+import NoteGrid from '../components/NoteGrid.vue'
 import AddCard from '../components/AddCard.vue'
-import Downloads from './Downloads.vue'
 
 export default {
   name: 'notes',
   components: {
-    NoteCard,
-    AddCard,
-    Downloads
+    NoteGrid,
+    AddCard
   },
   data () {
     return {}

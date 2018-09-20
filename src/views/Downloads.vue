@@ -214,6 +214,7 @@ export default {
   .list-title {
     position: absolute;
     margin: 22px 16px;
+    top: -40px;
   }
 }
 
@@ -243,6 +244,7 @@ export default {
   .list-title {
     position: absolute;
     margin: 22px 16px;
+    top: -40px;
   }
 }
 
@@ -270,6 +272,7 @@ export default {
   .list-title {
     position: absolute;
     margin: 22px 16px;
+    top: -50px;
   }
 }
 </style>

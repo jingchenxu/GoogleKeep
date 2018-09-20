@@ -8,9 +8,7 @@ export interface Note {
   type?: string,
   noteTitle?: string,
   noteContent?: string,
-  status?: string,
-  width?: Number,
-  height?: Number
+  status?: string
 }
 export interface State {
   noteList: Array<Note>,
