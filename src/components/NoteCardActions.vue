@@ -64,7 +64,7 @@ export default {
         { title: '添加标签' },
         { title: '添加绘图' },
         { title: '复制' }
-      ],
+      ]
     }
   }
 }
@@ -76,4 +76,3 @@ export default {
   height: auto;
 }
 </style>
-

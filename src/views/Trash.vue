@@ -55,6 +55,3 @@ export default {
   font-variant-ligatures: none;
 }
 </style>
-
-
-

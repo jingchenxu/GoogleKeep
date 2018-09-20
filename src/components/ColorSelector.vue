@@ -20,5 +20,3 @@ export default {
   background-color: grey;
 }
 </style>
-
-

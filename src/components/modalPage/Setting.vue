@@ -51,10 +51,9 @@ export default {
   },
   mounted () {
     let me = this
-    this.$bus.$on('showSetting', function(arg) {
+    this.$bus.$on('showSetting', function (arg) {
       me.dialog = true
     })
   }
 }
 </script>
-

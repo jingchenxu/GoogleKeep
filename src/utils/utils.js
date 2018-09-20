@@ -1,7 +1,6 @@
 let utils = {}
 
 utils.ItemFactory = function () {
-
   var lastIndex = 0
 
   function generateRandomItems (count) {

@@ -49,7 +49,7 @@
           <v-btn slot="activator" small icon>
             <v-icon small color="grey">mdi-palette</v-icon>
           </v-btn>
-          <ColorSelector/>
+          更改颜色
         </v-tooltip>
         <v-btn small icon>
           <v-icon small color="grey">image</v-icon>
@@ -74,13 +74,14 @@
 </template>
 
 <script>
-const {ipcRenderer} = window.require('electron')
 import ColorSelector from './ColorSelector'
+const { ipcRenderer } = window.require('electron')
 
 export default {
   name: 'add-card',
   components: {
-    ColorSelector
+    ColorSelector,
+    Tooltip
   },
   data () {
     return {
@@ -141,4 +142,3 @@ export default {
   }
 }
 </style>
-

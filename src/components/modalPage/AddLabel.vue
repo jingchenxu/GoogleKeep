@@ -27,16 +27,16 @@ export default {
     return {
       dialog: false,
       labelList: [
-        {labelId: '1', labelName: '测试'},
-        {labelId: '2', labelName: '测试'},
-        {labelId: '3', labelName: '测试'},
-        {labelId: '4', labelName: '测试'},
-        {labelId: '5', labelName: '测试'},
-        {labelId: '6', labelName: '测试'},
-        {labelId: '7', labelName: '测试'},
-        {labelId: '8', labelName: '测试'},
-        {labelId: '9', labelName: '测试'},
-        {labelId: '10', labelName: '测试'}
+        { labelId: '1', labelName: '测试' },
+        { labelId: '2', labelName: '测试' },
+        { labelId: '3', labelName: '测试' },
+        { labelId: '4', labelName: '测试' },
+        { labelId: '5', labelName: '测试' },
+        { labelId: '6', labelName: '测试' },
+        { labelId: '7', labelName: '测试' },
+        { labelId: '8', labelName: '测试' },
+        { labelId: '9', labelName: '测试' },
+        { labelId: '10', labelName: '测试' }
       ]
     }
   },
@@ -48,4 +48,3 @@ export default {
   }
 }
 </script>
-

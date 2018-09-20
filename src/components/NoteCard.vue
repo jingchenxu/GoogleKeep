@@ -68,8 +68,8 @@
 </template>
 
 <script>
-let { ipcRenderer } = window.require('electron')
 import NoteCardActions from './NoteCardActions'
+let { ipcRenderer } = window.require('electron')
 
 export default {
   name: 'note-card',
@@ -80,9 +80,11 @@ export default {
     noteDetail: {
       type: Object,
       required: false,
-      default: {
-        noteTitle: 'note title',
-        noteContent: 'note content'
+      default: function () {
+        return {
+          noteTitle: 'note title',
+          noteContent: 'note content'
+        }
       }
     }
   },
@@ -90,16 +92,16 @@ export default {
     return {
       card: { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
       dialog: false,
-      note: {},
+      note: {}
     }
   },
   mounted () {
     let me = this
     me.updateNoteSize()
     window.onresize = function () {
-      setTimeout( function() {
+      setTimeout(function () {
         me.updateNoteSize()
-      },1000)
+      }, 1000)
     }
   },
   computed: {
@@ -151,9 +153,9 @@ export default {
       // 开始更行vuex中对应的数据
       let noteList = me.$store.state.noteList
       for (let i=0; i<noteList.length; i++) {
-        if (noteList[i].id === me._props.noteDetail.id ) {
+        if (noteList[i].id === me._props.noteDetail.id) {
           noteList[i].width = me.getNoteWidth() ? me.getNoteWidth() : 300
-          noteList[i].height = me.getNoteHeight() ?  me.getNoteHeight() : 400
+          noteList[i].height = me.getNoteHeight() ? me.getNoteHeight() : 400
         }
       }
       me.$store.commit('setNoteList', noteList)
