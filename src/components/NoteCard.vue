@@ -1,5 +1,5 @@
 <template>
-  <v-card color="red" :id="noteDetail.id" ref="notecard" hover active-class="noteDisabled noteActive">
+  <v-card :color="noteDetail.color" :id="noteDetail.id" ref="notecard" hover active-class="noteDisabled noteActive">
     <v-card-title @click="noteClick">
       <v-badge color="white" left>
         <v-btn outline @click="deleteNote" slot="badge" small icon>
@@ -83,7 +83,8 @@ export default {
       default: function () {
         return {
           noteTitle: 'note title',
-          noteContent: 'note content'
+          noteContent: 'note content',
+          color: 'white'
         }
       }
     }

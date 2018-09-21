@@ -8,7 +8,8 @@ export interface Note {
   type?: string,
   noteTitle?: string,
   noteContent?: string,
-  status?: string
+  status?: string,
+  color?: string
 }
 export interface State {
   noteList: Array<Note>,
