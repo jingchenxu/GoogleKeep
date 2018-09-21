@@ -28,6 +28,7 @@
     <Setting/>
     <AddLabel/>
     <SetShortkey/>
+    <Search/>
   </div>
 </template>
 
@@ -35,13 +36,15 @@
 import Setting from './modalPage/Setting'
 import AddLabel from './modalPage/AddLabel'
 import SetShortkey from './modalPage/SetShortKey'
+import Search from './modalPage/Search'
 
 export default {
   name: 'side-menu',
   components: {
     Setting,
     AddLabel,
-    SetShortkey
+    SetShortkey,
+    Search
   },
   data () {
     return {

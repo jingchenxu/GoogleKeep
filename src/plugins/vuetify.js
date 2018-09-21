@@ -24,7 +24,8 @@ import {
   VTextarea,
   VBadge,
   VMenu,
-  VForm
+  VForm,
+  VCheckbox
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -53,7 +54,8 @@ Vue.use(Vuetify, {
     VTextarea,
     VBadge,
     VMenu,
-    VForm
+    VForm,
+    VCheckbox
   },
   theme: {
     primary: '#ee44aa',

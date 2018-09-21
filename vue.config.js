@@ -74,7 +74,7 @@ module.exports = {
     hotOnly: false,
     compress: true
     // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
-  },
+  }
 
   // options for 3rd party plugins
   // pluginOptions: {

@@ -1,7 +1,7 @@
 <template>
   <div class="notes">
     <AddCard></AddCard>
-    <NoteGrid/>
+    <NoteGrid groupTitle="已固定的记事"/>
   </div>
 </template>
 
@@ -35,4 +35,3 @@ export default {
   height: auto;
 }
 </style>
-

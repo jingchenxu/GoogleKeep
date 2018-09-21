@@ -4,7 +4,6 @@
       <v-card-title>键盘快捷键</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
-        
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -26,4 +25,3 @@ export default {
   }
 }
 </script>
-

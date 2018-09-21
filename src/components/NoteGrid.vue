@@ -4,21 +4,27 @@
     <div :key="index" v-for="(item, index) in noteList" class="item">
       <NoteCard :noteDetail="item"></NoteCard>
     </div>
-    <div class="list-title">
-      已固定的记事
+    <div v-if="groupTitle" class="list-title">
+      {{groupTitle}}
     </div>
   </div>
-</div> 
+</div>
 </template>
 
 <script>
 import NoteCard from './NoteCard.vue'
-import { setTimeout } from 'timers';
+import { setTimeout } from 'timers'
 
 export default {
   name: 'downloads',
   components: {
     NoteCard
+  },
+  props: {
+    groupTitle: {
+      type: String,
+      required: false
+    }
   },
   data () {
     return {
@@ -47,12 +53,12 @@ export default {
      */
     delayUpdate () {
       let me = this
-      setTimeout(function(){
+      setTimeout(function () {
         me.updateLayout()
         window.onresize = function () {
           me.updateLayout()
         }
-      },1)
+      }, 1)
     },
     /**
      * @author jingchenxu2015@gmail.com
@@ -60,7 +66,7 @@ export default {
      */
     updateLayout () {
       let me = this
-      let items = document.getElementsByClassName("item")
+      let items = document.getElementsByClassName('item')
       me.items = items
       let width = document.body.clientWidth
       let heightList
@@ -107,7 +113,7 @@ export default {
      */
     countPosition3 (index, x, y, itemHeight) {
       let me = this
-      
+
       let order = index%3
       if (order === 0) {
         x = 0
@@ -144,9 +150,9 @@ export default {
      */
     countPosition2 (index, x, y, itemHeight) {
       let me = this
-      
+
       if (me._isOdd(index)) {
-        x = 0;
+        x = 0
         if (index>0) {
           itemHeight = this.items[index-2].offsetHeight
           me.heightList[0] = me.heightList[0] + itemHeight + 16
@@ -276,4 +282,3 @@ export default {
   }
 }
 </style>
-
