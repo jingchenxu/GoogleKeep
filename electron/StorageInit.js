@@ -5,6 +5,8 @@
  */
 
 const Nedb = require('nedb')
+const { Notification } = require('electron')
+const { dialog } = require('electron')
 
 class StorageInit {
   constructor (filePath = './data/rosa.db', autoLoad = true) {
@@ -12,7 +14,7 @@ class StorageInit {
     this.autoload = autoLoad
     this.db = new Nedb({
       filename: 'rosa',
-      filepath: `file://${__dirname}/rosa.db`,
+      filepath: '/jingchenxu/GoogleKeep/rosa.db',
       autoload: true,
       inMemoryOnly: false,
       onload: function () {
@@ -52,13 +54,37 @@ class StorageInit {
   SEARCH (DATA) {
     let me = this
     let result = new Promise(function (resolve, reject) {
-      me.db.find(DATA, (err, ret) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(ret)
-        }
-      })
+      if (me.db.find) {
+        me.db.find(DATA, {}, (err, ret) => {
+          if (err) {
+            dialog.showMessageBox({
+              type: 'info',
+              title: '1214',
+              message: 'chenggong'
+            }, function (res) {
+              console.dir(res)
+            })
+            reject(err)
+          } else {
+            dialog.showMessageBox({
+              type: 'info',
+              title: '1214',
+              message: 'shibai'
+            }, function (res) {
+              console.dir(res)
+            })
+            resolve(ret)
+          }
+        })
+      } else {
+        dialog.showMessageBox({
+          type: 'info',
+          title: '1214',
+          message: 'meiyou'
+        }, function (res) {
+          console.dir(res)
+        })
+      }
     })
     return result
   }
