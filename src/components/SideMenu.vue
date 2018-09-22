@@ -27,18 +27,24 @@
     </v-list>
     <Setting/>
     <AddLabel/>
+    <SetShortkey/>
+    <Search/>
   </div>
 </template>
 
 <script>
 import Setting from './modalPage/Setting'
 import AddLabel from './modalPage/AddLabel'
+import SetShortkey from './modalPage/SetShortKey'
+import Search from './modalPage/Search'
 
 export default {
   name: 'side-menu',
   components: {
     Setting,
-    AddLabel
+    AddLabel,
+    SetShortkey,
+    Search
   },
   data () {
     return {
@@ -47,7 +53,7 @@ export default {
         { icon: 'touch_app', text: 'Reminders', name: 'reminders', params: {}, isModal: false },
         { divider: true },
         { heading: 'Labels' },
-        { icon: 'add', text: 'Create new label', name: 'newLabel', params: {}, isModal: false },
+        { icon: 'add', text: 'Create new label', name: 'newLabel', params: {}, isModal: true, emitName: 'showAddLabel' },
         { divider: true },
         { icon: 'archive', text: 'Archive', name: 'archive', params: {}, isModal: false },
         { icon: 'delete', text: 'Trash', name: 'trash', params: {}, isModal: false },
@@ -55,7 +61,7 @@ export default {
         { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: true, emitName: 'showSetting' },
         { icon: 'help', text: 'Help', name: 'help', params: {}, isModal: false },
         { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isModal: false },
-        { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: false }
+        { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: true, emitName: 'showSetShortKey' }
       ]
     }
   },

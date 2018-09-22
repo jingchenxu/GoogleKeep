@@ -13,24 +13,23 @@
 </template>
 
 <script>
-  export default {
-    name: 'label-item',
-    data () {
-      return {
-        message: 'Hey!',
-        loading: false
-      }
-    },
-    methods: {
-      clickMe () {
-        this.loading = true
-        this.message = 'Wait for it...'
-        setTimeout(() => {
-          this.loading = false
-          this.message = 'You\'ve clicked me!'
-        }, 2000)
-      }
+export default {
+  name: 'label-item',
+  data () {
+    return {
+      message: 'Hey!',
+      loading: false
+    }
+  },
+  methods: {
+    clickMe () {
+      this.loading = true
+      this.message = 'Wait for it...'
+      setTimeout(() => {
+        this.loading = false
+        this.message = 'You\'ve clicked me!'
+      }, 2000)
     }
   }
+}
 </script>
-

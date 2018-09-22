@@ -12,22 +12,6 @@ export default new Router({
       component: Notes
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: '/tablerows',
-      name: 'tablerows',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/TableRows.vue')
-    },
-    {
       path: '/notes',
       name: 'notes',
       component: () => import('./views/Notes.vue')

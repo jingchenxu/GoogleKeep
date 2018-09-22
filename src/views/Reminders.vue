@@ -1,6 +1,6 @@
 <template>
   <div class="reminder">
-    <NoteGrid/>
+    <NoteGrid :noteList="noteList"/>
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   data () {
     return {
     }
+  },
+  computed: {
+    noteList () {
+      return this.$store.state.noteList
+    }
   }
 }
 </script>
@@ -26,4 +31,3 @@ export default {
   height: 100%;
 }
 </style>
-

@@ -25,6 +25,8 @@ function createWindow () {
     win.loadURL('http://localhost:8088')
     // 打开开发者工具
     win.webContents.openDevTools()
+    // 安装vue调试工具
+    BrowserWindow.addDevToolsExtension('./vuetools/4.1.5_0')
   } else {
     win = new BrowserWindow({
       width: 800,

@@ -9,6 +9,7 @@ export interface Note {
   noteTitle?: string,
   noteContent?: string,
   status?: string,
+  color?: string
 }
 export interface State {
   noteList: Array<Note>,
@@ -40,7 +41,7 @@ export default new Vuex.Store({
     },
     deleteNote (state: State, note: Note) {
       // TODO 此处的算法需要优化
-      let temp: Array<Note>;
+      let temp: Array<Note>
       temp = state.noteList.filter(item => item.id !== note.id)
       console.dir(temp)
       state.noteList = temp

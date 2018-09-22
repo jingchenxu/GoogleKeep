@@ -13,12 +13,25 @@ class StorageInit {
     this.filepath = filePath
     this.autoload = autoLoad
     this.db = new Nedb({
-      filename: 'rosa',
+      filename: '/jingchenxu/GoogleKeep/rosa.db',
       filepath: '/jingchenxu/GoogleKeep/rosa.db',
       autoload: true,
       inMemoryOnly: false,
-      onload: function () {
-        console.log('database loading')
+      timestampData: true,
+      onload: function (error) {
+        if (error) {
+          console.log('初始化失败')
+          dialog.showMessageBox({
+            type: 'info',
+            title: '1214',
+            message: JSON.stringify(error)
+          }, function (res) {
+            console.dir(res)
+          })
+          console.dir(error)
+        } else {
+          console.log('database loading')
+        }
       }
     })
   }
@@ -95,8 +108,14 @@ class StorageInit {
 
   REMOVE (DATA) {
     let me = this
+    console.dir(DATA)
+    // id 作为主键
+    let params = {
+      id: DATA.id
+    }
     let result = new Promise(function (resolve, reject) {
-      me.db.remove(DATA, (err, ret) => {
+      me.db.remove(params, {}, (err, ret) => {
+        console.dir(params)
         if (err) {
           reject(err)
         } else {
