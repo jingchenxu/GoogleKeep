@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-text-field v-model="message" type="text">
+      <v-text-field height=36 v-model="message" type="text">
         <v-tooltip slot="prepend" bottom>
           <v-icon slot="activator">mdi-label</v-icon>
           I'm a tooltip

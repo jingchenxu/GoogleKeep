@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="300px">
     <v-card>
-      <v-card-title>修改标签</v-card-title>
+      <v-card-title>
+        <h2>修改标签</h2>
+      </v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
         <LabelItem :key="index" v-for="(item, index) of labelList"></LabelItem>
@@ -9,7 +11,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+        <v-btn color="blue darken-1" flat @click.native="dialog = false">完成</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
