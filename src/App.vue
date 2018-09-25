@@ -67,6 +67,10 @@ export default {
       console.dir(arg)
       me.$store.commit('setNoteList', arg)
     })
+    ipcRenderer.on('initLabelList', (event, arg) => {
+      console.dir(arg)
+      me.$store.commit('setLabelList', arg)
+    })
   },
   computed: {
     listType () {

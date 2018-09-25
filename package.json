@@ -61,6 +61,7 @@
     "readable-stream": "^2.3.6",
     "register-service-worker": "^1.0.0",
     "safe-buffer": "^5.1.2",
+    "sortablejs": "^1.7.0",
     "sqlstring": "^2.3.1",
     "underscore": "^1.4.4",
     "util-deprecate": "^1.0.2",

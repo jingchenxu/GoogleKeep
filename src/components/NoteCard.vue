@@ -10,7 +10,7 @@
       </v-badge>
     </v-card-title>
     <v-card-actions>
-      <NoteCardActions></NoteCardActions>
+      <NoteCardActions @updateColor="updateColor"></NoteCardActions>
     </v-card-actions>
     <v-dialog v-model="dialog">
       <v-card>
@@ -160,6 +160,12 @@ export default {
         }
       }
       me.$store.commit('setNoteList', noteList)
+    },
+    updateColor (color) {
+      let note = this._props.noteDetail
+      note.color = color
+      this.$store.commit('updateNote', note)
+      // TODO 通知后台修改数据库
     }
   }
 }

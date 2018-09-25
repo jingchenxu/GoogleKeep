@@ -90,7 +90,7 @@
             </v-text-field>
           </v-flex>
           <v-flex xs12>
-            <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
+            <DragList/>
           </v-flex>
         </v-layout>
 
@@ -138,12 +138,14 @@
 
 <script>
 import ColorSelector from './ColorSelector'
+import DragList from './DragList'
 const { ipcRenderer } = window.require('electron')
 
 export default {
   name: 'add-card',
   components: {
-    ColorSelector
+    ColorSelector,
+    DragList
   },
   data () {
     return {
@@ -222,7 +224,8 @@ export default {
         width: 300,
         height: 400,
         id: Number(new Date()),
-        color: this.bgcolor
+        color: this.bgcolor,
+        tableName: 'Note'
       }
       if (this.note.noteTitle || this.note.noteContent) {
         ipcRenderer.send('addNote', note)
