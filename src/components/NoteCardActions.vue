@@ -148,6 +148,7 @@ export default {
           this.colorList[i].isCheck = false
         }
       }
+      this.$emit('updateColor', item.color)
     }
   }
 }

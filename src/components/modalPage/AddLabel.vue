@@ -1,15 +1,18 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="300px">
     <v-card>
-      <v-card-title>修改标签</v-card-title>
+      <v-card-title>
+        <h2>修改标签</h2>
+      </v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
-        <LabelItem :key="index" v-for="(item, index) of labelList"></LabelItem>
+        <AddLabelItem />
+        <LabelItem :labelDetail="item" :key="index" v-for="(item, index) of labelList"></LabelItem>
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+        <v-btn color="grey darken-1" flat @click.native="dialog = false">完成</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -17,27 +20,22 @@
 
 <script>
 import LabelItem from '../LabelItem'
+import AddLabelItem from '../AddLabelItem'
 
 export default {
   name: 'add-label',
   components: {
-    LabelItem
+    LabelItem,
+    AddLabelItem
   },
   data () {
     return {
-      dialog: false,
-      labelList: [
-        { labelId: '1', labelName: '测试' },
-        { labelId: '2', labelName: '测试' },
-        { labelId: '3', labelName: '测试' },
-        { labelId: '4', labelName: '测试' },
-        { labelId: '5', labelName: '测试' },
-        { labelId: '6', labelName: '测试' },
-        { labelId: '7', labelName: '测试' },
-        { labelId: '8', labelName: '测试' },
-        { labelId: '9', labelName: '测试' },
-        { labelId: '10', labelName: '测试' }
-      ]
+      dialog: false
+    }
+  },
+  computed: {
+    labelList () {
+      return this.$store.state.labelList
     }
   },
   mounted () {

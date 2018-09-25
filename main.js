@@ -88,9 +88,13 @@ app.on('activate', () => {
 ipcMain.on('renderFinish', (event, value) => {
   console.log('--------->', 'render finished', value)
   let storage = new StorageInit()
-  storage.SEARCH({}).then(function (res) {
+  storage.SEARCH({ tableName: 'Note' }).then(function (res) {
     console.log('--------->', 'load pageList')
     win.webContents.send('initNoteList', res)
+  })
+  storage.SEARCH({ tableName: 'Label' }).then(function (res) {
+    console.log('--------->', 'load pageList')
+    win.webContents.send('initLabelList', res)
   })
 })
 
@@ -103,9 +107,45 @@ ipcMain.on('addNote', (event, value) => {
   })
 })
 
+// 更新note
+ipcMain.on('updateNote', (event, value) => {
+  console.log('--------->', 'updateNote')
+  let storage = new StorageInit()
+  storage.UPDATE(value).then(function (res) {
+    console.dir(res)
+  })
+})
+
 // 删除note
 ipcMain.on('deleteNote', (event, value) => {
   console.log('--------->', 'deleteNote')
+  let storage = new StorageInit()
+  storage.REMOVE(value).then(function (res) {
+    console.dir(res)
+  })
+})
+
+// 添加label
+ipcMain.on('addLabel', (event, value) => {
+  console.log('--------->', 'addLabel')
+  let storage = new StorageInit()
+  storage.INSERT(value).then(function (res) {
+    console.dir(res)
+  })
+})
+
+// 更新label
+ipcMain.on('updateLabel', (event, value) => {
+  console.log('--------->', 'updateLabel')
+  let storage = new StorageInit()
+  storage.UPDATE(value).then(function (res) {
+    console.dir(res)
+  })
+})
+
+// 删除label
+ipcMain.on('deleteLabel', (event, value) => {
+  console.log('--------->', 'deleteLabel')
   let storage = new StorageInit()
   storage.REMOVE(value).then(function (res) {
     console.dir(res)
