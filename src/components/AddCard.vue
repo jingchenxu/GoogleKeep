@@ -3,15 +3,12 @@
     <v-text-field v-if="noteType === 'none'" @focus="addNote" label="添加记事..." single-line solo>
       <div slot="append">
         <v-spacer></v-spacer>
-
         <v-btn @click="addList" icon>
           <v-icon>mdi-format-list-checkbox</v-icon>
         </v-btn>
-
         <v-btn @click="addImage" icon>
           <v-icon>image</v-icon>
         </v-btn>
-
         <v-btn icon>
           <v-icon>mdi-pen</v-icon>
         </v-btn>
@@ -24,7 +21,6 @@
             <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
               <div slot="append">
                 <v-spacer></v-spacer>
-
                 <v-btn small icon>
                   <v-icon small color="grey">mdi-pin</v-icon>
                 </v-btn>
@@ -35,9 +31,7 @@
             <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
           </v-flex>
         </v-layout>
-
       </v-card-title>
-
       <v-card-actions>
         <v-btn small icon>
           <v-icon small color="grey">mdi-reminder</v-icon>
@@ -82,7 +76,6 @@
             <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
               <div slot="append">
                 <v-spacer></v-spacer>
-
                 <v-btn small icon>
                   <v-icon small color="grey">mdi-pin</v-icon>
                 </v-btn>
@@ -93,9 +86,7 @@
             <DragList/>
           </v-flex>
         </v-layout>
-
       </v-card-title>
-
       <v-card-actions>
         <v-btn small icon>
           <v-icon small color="grey">mdi-reminder</v-icon>

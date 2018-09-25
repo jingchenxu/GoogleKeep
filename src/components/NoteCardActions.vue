@@ -49,7 +49,7 @@
               <v-icon color="grey">mdi-dots-vertical</v-icon>
             </v-btn>
             <v-list>
-              <v-list-tile v-for="(item, index) in items" :key="index">
+              <v-list-tile @click="itemClick(item)" v-for="(item, index) in items" :key="index">
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile>
             </v-list>
@@ -65,10 +65,10 @@ export default {
   data () {
     return {
       items: [
-        { title: '删除这条记事' },
-        { title: '添加标签' },
-        { title: '添加绘图' },
-        { title: '复制' }
+        { title: '删除这条记事', id: '01' },
+        { title: '添加标签', id: '02' },
+        { title: '添加绘图', id: '03' },
+        { title: '复制', id: '03' }
       ],
       show: false,
       colorList: [
@@ -124,6 +124,11 @@ export default {
       ]
     }
   },
+  mounted () {
+    document.addEventListener('click', function () {
+      console.log('click')
+    })
+  },
   methods: {
     enter () {
       console.log('鼠标移入了')
@@ -149,6 +154,22 @@ export default {
         }
       }
       this.$emit('updateColor', item.color)
+    },
+    itemClick (item) {
+      let me = this
+      let { id } = { ...item }
+      switch (id) {
+        case '01':
+        // 删除当前数据
+          console.dir(me)
+          me.$parent.$parent.deleteNote()
+          break
+        case '02':
+          console.log('添加标签')
+          break
+        default:
+          console.warn('未能匹配到合适的操作')
+      }
     }
   }
 }
@@ -183,5 +204,12 @@ export default {
 }
 .selector-item:hover {
   border: 2px solid grey!important;
+}
+.label-list {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  left: 200px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 </style>
