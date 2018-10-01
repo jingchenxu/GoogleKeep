@@ -37,6 +37,9 @@ export default {
       console.log('失去焦点')
       this.isFocus = false
       this.isBlur = true
+    },
+    labelSubmit () {
+      console.log('保存label')
     }
   }
 }

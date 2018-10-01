@@ -49,7 +49,7 @@
               <v-icon color="grey">mdi-dots-vertical</v-icon>
             </v-btn>
             <v-list>
-              <v-list-tile @click="itemClick(item)" v-for="(item, index) in items" :key="index">
+              <v-list-tile  style="height: 36px;" @click="itemClick(item)" v-for="(item, index) in items" :key="index">
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile>
             </v-list>

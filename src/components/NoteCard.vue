@@ -1,14 +1,15 @@
 <template>
   <v-card :color="noteDetail.color" :id="noteDetail.id" ref="notecard" hover active-class="noteDisabled noteActive">
+    <div @click="deleteNote" class="close-container">
+      <v-icon small color="grey">mdi-close</v-icon>
+    </div>
     <v-card-title @click="noteClick">
-      <v-badge color="white" left>
-        <v-btn outline @click="deleteNote" slot="badge" small icon>
-          <v-icon small color="grey">mdi-close</v-icon>
-        </v-btn>
-        <div class="headline">{{noteDetail.noteTitle}}</div>
-        <div>{{noteDetail.noteContent}}</div>
-      </v-badge>
+      <div class="headline">{{noteDetail.noteTitle}}</div>
+
     </v-card-title>
+    <v-card-text>
+      <div>{{noteDetail.noteContent}}</div>
+    </v-card-text>
     <v-card-actions>
       <NoteCardActions @updateColor="updateColor"></NoteCardActions>
     </v-card-actions>
@@ -172,6 +173,21 @@ export default {
 </script>
 
 <style scoped>
+.v-card__title {
+  padding-bottom: 0px;
+}
+.close-container {
+  position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 14px!important;
+    line-height: 28px;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: white;
+}
 .noteDisabled {
   display: block;
 }
