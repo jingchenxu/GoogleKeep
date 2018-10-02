@@ -15,23 +15,22 @@
       </div>
     </v-text-field>
     <v-card :color="bgcolor" v-if="noteType === 'note'">
-      <v-card-title primary-title>
+      <div class="fix-container">
+        <v-btn small icon>
+          <v-icon small color="blue">mdi-pin</v-icon>
+        </v-btn>
+      </div>
+      <v-card-title style="padding-top: 0px; padding-bottom: 0px;" primary-title>
         <v-layout align-start row wrap>
           <v-flex xs12>
             <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
-              <div slot="append">
-                <v-spacer></v-spacer>
-                <v-btn small icon>
-                  <v-icon small color="grey">mdi-pin</v-icon>
-                </v-btn>
-              </div>
             </v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
           </v-flex>
         </v-layout>
       </v-card-title>
+      <v-card-text style="padding-top: 0px;padding-bottom: 0px;">
+        <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
+      </v-card-text>
       <v-card-actions>
         <v-btn small icon>
           <v-icon small color="grey">mdi-reminder</v-icon>
@@ -70,16 +69,15 @@
       </v-card-actions>
     </v-card>
     <v-card :color="bgcolor" v-if="noteType === 'list'">
+      <div class="fix-container">
+        <v-btn small icon>
+          <v-icon small color="blue">mdi-pin</v-icon>
+        </v-btn>
+      </div>
       <v-card-title primary-title>
         <v-layout align-start row wrap>
           <v-flex xs12>
             <v-text-field autofocus flat full-width v-model="note.noteTitle" label="标题" single-line solo>
-              <div slot="append">
-                <v-spacer></v-spacer>
-                <v-btn small icon>
-                  <v-icon small color="grey">mdi-pin</v-icon>
-                </v-btn>
-              </div>
             </v-text-field>
           </v-flex>
           <v-flex xs12>
@@ -216,7 +214,8 @@ export default {
         height: 400,
         id: Number(new Date()),
         color: this.bgcolor,
-        tableName: 'Note'
+        tableName: 'Note',
+        isFlex: true
       }
       if (this.note.noteTitle || this.note.noteContent) {
         ipcRenderer.send('addNote', note)
@@ -305,5 +304,10 @@ export default {
 }
 .selector-item:hover {
   border: 2px solid grey!important;
+}
+.fix-container {
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 </style>

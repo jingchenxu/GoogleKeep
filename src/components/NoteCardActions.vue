@@ -95,7 +95,7 @@ export default {
         }, {
           id: 6,
           isCheck: false,
-          color: 'light-blue accent-1'
+          color: 'light-blue accent-2'
         }, {
           id: 7,
           isCheck: false,

@@ -10,7 +10,8 @@ export interface Note {
   noteContent?: string,
   status?: string,
   color?: string,
-  tableName: string
+  tableName: string,
+  isFixed?: true
 }
 export interface Label {
   id?: string,

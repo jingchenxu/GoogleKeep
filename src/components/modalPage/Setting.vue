@@ -5,7 +5,12 @@
         <span class="headline">设置</span>
       </v-card-title>
       <v-card-text>
-
+        <div class="item-container">
+          <v-divider></v-divider>
+          <span class="grey--text">清单运作方式</span><br>
+          <span>Whitehaven Beach<v-checkbox v-model="checkbox2"></v-checkbox></span><br>
+          <span>Whitsunday Island, Whitsunday Islands</span>
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -21,7 +26,8 @@ export default {
   name: 'setting',
   data () {
     return {
-      dialog: false
+      dialog: false,
+      checkbox2: false
     }
   },
   mounted () {
@@ -36,5 +42,8 @@ export default {
 <style scoped>
 .setting-container {
 
+}
+.item-container {
+  line-height: 36px;
 }
 </style>

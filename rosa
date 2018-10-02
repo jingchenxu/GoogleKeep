@@ -1,11 +1,13 @@
 {"id":1537844243894,"labelName":"67","tableName":"Label","_id":"4voQg36dxHmW8Shb","createdAt":{"$$date":1537844244052},"updatedAt":{"$$date":1537844244052}}
 {"id":1537844756205,"labelName":"56","tableName":"Label","_id":"5KsOxxonU2WQUZxz","createdAt":{"$$date":1537844756334},"updatedAt":{"$$date":1537844756334}}
+{"color":"yellow accent-1","height":150,"id":1538473385048,"isFlex":true,"noteContent":"12","noteTitle":"12","tableName":"Note","width":240,"_id":"FgY2BMtkciG4mKNX","createdAt":{"$$date":1538473385208},"updatedAt":{"$$date":1538482439170}}
 {"id":1537844117111,"labelName":"89","tableName":"Label","_id":"H02H9VyDrtkaJufF","createdAt":{"$$date":1537844117281},"updatedAt":{"$$date":1537844117281}}
-{"color":"white","height":400,"id":1538402795172,"noteContent":"12","noteTitle":"12","tableName":"Note","width":300,"_id":"I1nuMclk5oj9wqsM","createdAt":{"$$date":1538402795334},"updatedAt":{"$$date":1538402795334}}
 {"id":1537844242247,"labelName":"67","tableName":"Label","_id":"LlxRg3oOfc3eeOEw","createdAt":{"$$date":1537844242366},"updatedAt":{"$$date":1537844242366}}
 {"id":1537844238606,"labelName":"67","tableName":"Label","_id":"SqxvLOu66c35jqVQ","createdAt":{"$$date":1537844238778},"updatedAt":{"$$date":1537844238778}}
 {"id":1537844104463,"labelName":"67","tableName":"Label","_id":"WRw2aQtTFlFaBPBd","createdAt":{"$$date":1537844104641},"updatedAt":{"$$date":1537844104641}}
 {"id":1537844110967,"labelName":"78","tableName":"Label","_id":"Ye3LhLDXqw5ZV5gY","createdAt":{"$$date":1537844111114},"updatedAt":{"$$date":1537844111114}}
 {"id":1537844478262,"labelName":"12","tableName":"Label","_id":"kiU9fJ01hUuHJpjl","createdAt":{"$$date":1537844478385},"updatedAt":{"$$date":1537844478385}}
+{"color":"indigo accent-2","height":150,"id":1538473671680,"isFlex":true,"noteContent":"12342134","noteTitle":"2134","tableName":"Note","width":240,"_id":"oFR3HqbepZDAufMO","createdAt":{"$$date":1538473672151},"updatedAt":{"$$date":1538484099766}}
 {"id":1537844240679,"labelName":"67","tableName":"Label","_id":"pYWTUnyOYxlUHpd2","createdAt":{"$$date":1537844240879},"updatedAt":{"$$date":1537844240879}}
+{"color":"white","height":400,"id":1538473674752,"isFlex":true,"noteContent":"12342134","noteTitle":"12342134","tableName":"Note","width":300,"_id":"sYfZnD1zpGmefG3O","createdAt":{"$$date":1538473674904},"updatedAt":{"$$date":1538473674904}}
 {"id":1537844498958,"labelName":"12","tableName":"Label","_id":"yg8hmYalJQiSmdh0","createdAt":{"$$date":1537844499078},"updatedAt":{"$$date":1537844499078}}

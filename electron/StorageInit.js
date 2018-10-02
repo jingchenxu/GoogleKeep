@@ -69,7 +69,25 @@ class StorageInit {
   }
 
   UPDATE (DATA) {
-
+    let me = this
+    console.dir(DATA)
+    // 以id作为主键
+    let params = {
+      id: DATA.id
+    }
+    let result = new Promise(function (resolve, reject) {
+      me.db.update(params, {
+        $set: DATA
+      }, (err, ret) => {
+        console.dir(params)
+        if (err) {
+          reject(err)
+        } else {
+          resolve(ret)
+        }
+      })
+    })
+    return result
   }
 
   REMOVE (DATA) {

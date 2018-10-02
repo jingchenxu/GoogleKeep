@@ -3,9 +3,13 @@
     <div @click="deleteNote" class="close-container">
       <v-icon small color="grey">mdi-close</v-icon>
     </div>
+    <div class="fix-container">
+      <v-btn @click="updateIsFlex" small icon>
+        <v-icon small :color="noteDetail.isFlex ? 'blue' : 'grey'">mdi-pin</v-icon>
+      </v-btn>
+    </div>
     <v-card-title @click="noteClick">
       <div class="headline">{{noteDetail.noteTitle}}</div>
-
     </v-card-title>
     <v-card-text>
       <div>{{noteDetail.noteContent}}</div>
@@ -28,13 +32,11 @@
                 </div>
               </v-text-field>
             </v-flex>
-            <v-flex xs12>
-              <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
-            </v-flex>
           </v-layout>
-
         </v-card-title>
-
+        <v-card-text>
+          <v-textarea full-width auto-grow flat solo name="input-7-4" placeholder="添加记事..." label="Solo textarea" v-model="note.noteContent"></v-textarea>
+        </v-card-text>
         <v-card-actions>
           <v-btn small icon>
             <v-icon small color="grey">mdi-reminder</v-icon>
@@ -167,6 +169,14 @@ export default {
       note.color = color
       this.$store.commit('updateNote', note)
       // TODO 通知后台修改数据库
+      ipcRenderer.send('updateNote', note)
+    },
+    updateIsFlex () {
+      let note = this._props.noteDetail
+      note.isFlex = !note.isFlex
+      this.$store.commit('updateNote', note)
+      // TODO 通知后台修改数据库
+      ipcRenderer.send('updateNote', note)
     }
   }
 }
@@ -187,6 +197,10 @@ export default {
     margin-top: -10px;
     margin-left: -10px;
     background-color: white;
+}
+.fix-container {
+  position: fixed;
+  right: 0px;
 }
 .noteDisabled {
   display: block;
