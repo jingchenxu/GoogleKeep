@@ -37,6 +37,7 @@ import Setting from './modalPage/Setting'
 import AddLabel from './modalPage/AddLabel'
 import SetShortkey from './modalPage/SetShortKey'
 import Search from './modalPage/Search'
+let { shell } = window.require('electron')
 
 export default {
   name: 'side-menu',
@@ -59,7 +60,7 @@ export default {
         { icon: 'delete', text: 'Trash', name: 'trash', params: {}, isModal: false },
         { divider: true },
         { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: true, emitName: 'showSetting' },
-        { icon: 'help', text: 'Help', name: 'help', params: {}, isModal: false },
+        { icon: 'help', text: 'Help', name: 'help', params: {}, isUrl: true, url: 'www.baidu.com' },
         { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isModal: false },
         { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: true, emitName: 'showSetShortKey' }
       ]
@@ -70,6 +71,8 @@ export default {
       let me = this
       if (item.isModal) {
         me.$bus.$emit(item.emitName)
+      } else if (item.isUrl) {
+        shell.openExternal(item.url)
       } else {
         this.$router.push(item)
       }

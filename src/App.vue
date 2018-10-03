@@ -52,7 +52,7 @@ export default {
     let me = this
     ipcRenderer.on('loadTable', (event, arg) => {
       console.log('获取到通过数据库连接加载到的列表数据')
-      console.dir(arg)
+      console.table(arg)
     })
   },
   data () {
@@ -64,7 +64,7 @@ export default {
     let me = this
     ipcRenderer.send('renderFinish', 'from render')
     ipcRenderer.on('initNoteList', (event, arg) => {
-      console.dir(arg)
+      console.table(arg)
       me.$store.commit('setNoteList', arg)
     })
     ipcRenderer.on('initLabelList', (event, arg) => {
