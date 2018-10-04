@@ -3,7 +3,7 @@
   "author": "jingchenxu2015@gmail.com",
   "description": "Rosa",
   "license": "ISC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "main": "main.js",
   "build": {

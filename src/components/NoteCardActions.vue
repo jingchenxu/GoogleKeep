@@ -39,9 +39,12 @@
           </v-tooltip>
         </v-flex>
         <v-flex xs2>
-          <v-btn small icon>
+          <v-tooltip bottom>
+          <v-btn @click="handleArchive" slot="activator" small icon>
             <v-icon small color="grey">mdi-package-down</v-icon>
           </v-btn>
+          <span>归档</span>
+          </v-tooltip>
         </v-flex>
         <v-flex xs2>
           <v-menu offset-y>
@@ -124,6 +127,12 @@ export default {
       ]
     }
   },
+  props: {
+    note: {
+      type: Object,
+      required: true
+    }
+  },
   mounted () {
     document.addEventListener('click', function () {
       console.log('click')
@@ -153,14 +162,20 @@ export default {
           this.colorList[i].isCheck = false
         }
       }
-      this.$emit('updateColor', item.color)
+      let note = this._props.note
+      note.color = item.color
+      this.$emit('updateNote', note)
+    },
+    handleArchive () {
+      let note = this._props.note
+      note.isFlex = !note.isFlex
+      this.$emit('updateNote', note)
     },
     itemClick (item) {
       let me = this
       let { id } = { ...item }
       switch (id) {
         case '01':
-        // 删除当前数据
           console.dir(me)
           me.$parent.$parent.deleteNote()
           break

@@ -1,13 +1,15 @@
 {"id":1537844243894,"labelName":"67","tableName":"Label","_id":"4voQg36dxHmW8Shb","createdAt":{"$$date":1537844244052},"updatedAt":{"$$date":1537844244052}}
 {"id":1537844756205,"labelName":"56","tableName":"Label","_id":"5KsOxxonU2WQUZxz","createdAt":{"$$date":1537844756334},"updatedAt":{"$$date":1537844756334}}
-{"color":"yellow accent-1","height":150,"id":1538473385048,"isFlex":true,"noteContent":"12","noteTitle":"12","tableName":"Note","width":240,"_id":"FgY2BMtkciG4mKNX","createdAt":{"$$date":1538473385208},"updatedAt":{"$$date":1538482439170}}
+{"color":"white","height":150,"id":1538645762947,"noteContent":"12","noteTitle":"12","tableName":"Note","width":240,"_id":"5wBVzajtyrSSMX58","createdAt":{"$$date":1538645763341},"updatedAt":{"$$date":1538646715887},"isFlex":true}
+{"color":"light-blue accent-2","height":150,"id":1538646022706,"noteContent":"12","noteTitle":"12","tableName":"Note","width":240,"_id":"8NO2ZTmWi1isiaFB","createdAt":{"$$date":1538646023135},"updatedAt":{"$$date":1538646886217},"isFlex":true}
 {"id":1537844117111,"labelName":"89","tableName":"Label","_id":"H02H9VyDrtkaJufF","createdAt":{"$$date":1537844117281},"updatedAt":{"$$date":1537844117281}}
 {"id":1537844242247,"labelName":"67","tableName":"Label","_id":"LlxRg3oOfc3eeOEw","createdAt":{"$$date":1537844242366},"updatedAt":{"$$date":1537844242366}}
+{"color":"yellow accent-1","height":150,"id":1538645686364,"noteContent":"45","noteTitle":"45","tableName":"Note","width":240,"_id":"M1w2D9l4dTdZw2j3","createdAt":{"$$date":1538645686400},"updatedAt":{"$$date":1538646890980},"isFlex":false}
 {"id":1537844238606,"labelName":"67","tableName":"Label","_id":"SqxvLOu66c35jqVQ","createdAt":{"$$date":1537844238778},"updatedAt":{"$$date":1537844238778}}
 {"id":1537844104463,"labelName":"67","tableName":"Label","_id":"WRw2aQtTFlFaBPBd","createdAt":{"$$date":1537844104641},"updatedAt":{"$$date":1537844104641}}
 {"id":1537844110967,"labelName":"78","tableName":"Label","_id":"Ye3LhLDXqw5ZV5gY","createdAt":{"$$date":1537844111114},"updatedAt":{"$$date":1537844111114}}
 {"id":1537844478262,"labelName":"12","tableName":"Label","_id":"kiU9fJ01hUuHJpjl","createdAt":{"$$date":1537844478385},"updatedAt":{"$$date":1537844478385}}
-{"color":"indigo accent-2","height":150,"id":1538473671680,"isFlex":true,"noteContent":"12342134","noteTitle":"2134","tableName":"Note","width":240,"_id":"oFR3HqbepZDAufMO","createdAt":{"$$date":1538473672151},"updatedAt":{"$$date":1538484099766}}
+{"color":"white","height":400,"id":1538646826755,"noteContent":"12","noteTitle":"12","tableName":"Note","width":300,"_id":"nS14KXF9qCpDBDnG","createdAt":{"$$date":1538646827006},"updatedAt":{"$$date":1538646827006}}
+{"color":"green accent-1","height":150,"id":1538646820483,"noteContent":"12","noteTitle":"12","tableName":"Note","width":240,"_id":"o8ddVNrnqu8QVDb8","createdAt":{"$$date":1538646820559},"updatedAt":{"$$date":1538646888682}}
 {"id":1537844240679,"labelName":"67","tableName":"Label","_id":"pYWTUnyOYxlUHpd2","createdAt":{"$$date":1537844240879},"updatedAt":{"$$date":1537844240879}}
-{"color":"white","height":400,"id":1538473674752,"isFlex":true,"noteContent":"12342134","noteTitle":"12342134","tableName":"Note","width":300,"_id":"sYfZnD1zpGmefG3O","createdAt":{"$$date":1538473674904},"updatedAt":{"$$date":1538473674904}}
 {"id":1537844498958,"labelName":"12","tableName":"Label","_id":"yg8hmYalJQiSmdh0","createdAt":{"$$date":1537844499078},"updatedAt":{"$$date":1537844499078}}

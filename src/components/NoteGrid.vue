@@ -1,5 +1,5 @@
 <template>
-<div id="waterfall" class="waterfall">
+<div ref="waterfall" class="waterfall">
   <div>
     <div :key="index" v-for="(item, index) in noteList" class="item">
       <NoteCard :noteDetail="item"></NoteCard>
@@ -24,6 +24,10 @@ export default {
     groupTitle: {
       type: String,
       required: false
+    },
+    noteList: {
+      type: Array,
+      required: true
     }
   },
   data () {
@@ -39,11 +43,6 @@ export default {
   watch: {
     noteList () {
       this.delayUpdate()
-    }
-  },
-  computed: {
-    noteList () {
-      return this.$store.state.noteList
     }
   },
   methods: {
@@ -66,7 +65,7 @@ export default {
      */
     updateLayout () {
       let me = this
-      let items = document.getElementsByClassName('item')
+      let items = me.$refs.waterfall.getElementsByClassName('item')
       me.items = items
       let width = document.body.clientWidth
       let heightList
@@ -203,7 +202,7 @@ export default {
   }
   .waterfall > div {
     position: relative;
-    height: 1000px;
+    height: 500px;
   }
   .waterfall .item {
     width: 240px;
@@ -232,7 +231,7 @@ export default {
   }
   .waterfall > div {
     position: relative;
-    height: 1000px;
+    height: 500px;
   }
   .waterfall .item {
     width: 240px;
@@ -263,7 +262,7 @@ export default {
   }
   .waterfall > div {
     position: relative;
-    height: 1000px;
+    height: 500px;
   }
   .waterfall .item {
     width: 100%;
