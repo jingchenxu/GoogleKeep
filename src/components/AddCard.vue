@@ -14,10 +14,10 @@
         </v-btn>
       </div>
     </v-text-field>
-    <v-card :color="bgcolor" v-if="noteType === 'note'">
+    <v-card class="mb-4" :color="bgcolor" v-if="noteType === 'note'">
       <div class="fix-container">
-        <v-btn small icon>
-          <v-icon small color="blue">mdi-pin</v-icon>
+        <v-btn @click="flexChange" small icon>
+          <v-icon small :color="note.isFlex ? 'blue' : 'grey'">mdi-pin</v-icon>
         </v-btn>
       </div>
       <v-card-title style="padding-top: 0px; padding-bottom: 0px;" primary-title>
@@ -141,7 +141,8 @@ export default {
       noteType: 'none', // none | list | note | image | pen
       note: {
         noteTitle: '',
-        noteContent: ''
+        noteContent: '',
+        isFlex: false
       },
       show: false,
       bgcolor: 'white',
@@ -215,7 +216,7 @@ export default {
         id: Number(new Date()),
         color: this.bgcolor,
         tableName: 'Note',
-        isFlex: true
+        isFlex: this.isFlex
       }
       if (this.note.noteTitle || this.note.noteContent) {
         ipcRenderer.send('addNote', note)
@@ -247,6 +248,9 @@ export default {
           this.colorList[i].isCheck = false
         }
       }
+    },
+    flexChange () {
+      this.note.isFlex = !this.note.isFlex
     },
     addList () {
       this.noteType = 'list'

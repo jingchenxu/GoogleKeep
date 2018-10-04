@@ -61,7 +61,7 @@ export default {
         { divider: true },
         { icon: 'settings', text: 'Settings', name: 'settings', params: {}, isModal: true, emitName: 'showSetting' },
         { icon: 'help', text: 'Help', name: 'help', params: {}, isUrl: true, url: 'www.baidu.com' },
-        { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isModal: false },
+        { icon: 'phonelink', text: 'App downloads', name: 'downloads', params: {}, isUrl: true, url: 'www.baidu.com' },
         { icon: 'keyboard', text: 'Keyboard shortcuts', name: 'shortcuts', params: {}, isModal: true, emitName: 'showSetShortKey' }
       ]
     }

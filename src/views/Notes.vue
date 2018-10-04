@@ -1,7 +1,8 @@
 <template>
   <div class="notes">
     <AddCard></AddCard>
-    <NoteGrid groupTitle="已固定的记事"/>
+    <NoteGrid :noteList="fixedNoteList" groupTitle="已固定的记事"/>
+    <NoteGrid :noteList="otherNoteList" groupTitle="其它"/>
   </div>
 </template>
 
@@ -22,8 +23,13 @@ export default {
     listType () {
       return this.$store.state.listType === 'mdi-view-stream'
     },
-    noteList () {
-      return this.$store.state.noteList
+    fixedNoteList () {
+      let noteList = this.$store.state.noteList.filter(item => item.isFlex)
+      return noteList || []
+    },
+    otherNoteList () {
+      let noteList = this.$store.state.noteList.filter(item => !item.isFlex)
+      return noteList || []
     }
   }
 }
