@@ -1,6 +1,6 @@
 <template>
 <div ref="waterfall" class="waterfall">
-  <div>
+  <div :style="{height: containerHeight+'px'}">
     <div :key="index" v-for="(item, index) in noteList" class="item">
       <NoteCard :noteDetail="item"></NoteCard>
     </div>
@@ -34,7 +34,8 @@ export default {
     return {
       sizeType: 1,
       heightList: [],
-      items: []
+      items: [],
+      containerHeight: 200
     }
   },
   mounted () {
@@ -54,10 +55,8 @@ export default {
       let me = this
       setTimeout(function () {
         me.updateLayout()
-        window.onresize = function () {
-          me.updateLayout()
-        }
-      }, 1)
+        window.addEventListener('resize', () => me.updateLayout(), false)
+      }, 2)
     },
     /**
      * @author jingchenxu2015@gmail.com
@@ -110,7 +109,7 @@ export default {
      * @author jingchenxu2015@gmail.com
      * @description 计算card的position 偶数为true
      */
-    countPosition3 (index, x, y, itemHeight) {
+    countPosition3 (index, x, y, itemHeight = 0) {
       let me = this
 
       let order = index%3
@@ -138,6 +137,9 @@ export default {
         }
         y = me.heightList[2]
       }
+      if (y+this.items[index].offsetHeight+50 > me.containerHeight) {
+        me.containerHeight = y+this.items[index].offsetHeight+50
+      }
       return {
         x,
         y
@@ -147,13 +149,15 @@ export default {
      * @author jingchenxu2015@gmail.com
      * @description 计算card的position 偶数为true
      */
-    countPosition2 (index, x, y, itemHeight) {
+    countPosition2 (index, x, y, itemHeight = 0) {
       let me = this
 
       if (me._isOdd(index)) {
         x = 0
         if (index>0) {
+          // 用于保存上方元素的高度
           itemHeight = this.items[index-2].offsetHeight
+          // 用于缓存高度
           me.heightList[0] = me.heightList[0] + itemHeight + 16
         }
         y = me.heightList[0]
@@ -165,6 +169,9 @@ export default {
         }
         y = me.heightList[1]
       }
+      if (y+this.items[index].offsetHeight+50 > me.containerHeight) {
+        me.containerHeight = y+this.items[index].offsetHeight+50
+      }
       return {
         x,
         y
@@ -174,13 +181,16 @@ export default {
      * @author jingchenxu2015@gmail.com
      * @description 计算card的position 偶数为true
      */
-    countPosition1 (index, x, y, itemHeight) {
+    countPosition1 (index, x, y, itemHeight = 0) {
       let me = this
       x = 0
       if (index > 0) {
         me.heightList[0] = me.heightList[0] + itemHeight + 16
       }
       y = me.heightList[0]
+      if (y+this.items[index].offsetHeight+50 > me.containerHeight) {
+        me.containerHeight = y+this.items[index].offsetHeight+50
+      }
       return {
         x,
         y
@@ -207,7 +217,6 @@ export default {
   .waterfall .item {
     width: 240px;
     transform: translate(0px, 40px);
-    /* height: 200px; */
     background-color: brown;
     margin: 16px;
     transition-duration: .218s;
@@ -236,7 +245,6 @@ export default {
   .waterfall .item {
     width: 240px;
     transform: translate(0px, 40px);
-    /* height: 200px; */
     background-color:darkgoldenrod;
     box-sizing: border-box;
     margin: 16px;
@@ -266,7 +274,6 @@ export default {
   }
   .waterfall .item {
     width: 100%;
-    /* height: 200px; */
     background-color: rebeccapurple;
     margin: 0px;
     transition-duration: .218s;
