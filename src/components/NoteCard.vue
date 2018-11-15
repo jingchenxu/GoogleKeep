@@ -11,7 +11,7 @@
     <v-card-title @click="noteClick">
       <div class="headline">{{noteDetail.noteTitle}}</div>
     </v-card-title>
-    <v-card-text>
+    <v-card-text style="padding-bottom: 0px;">
       <div>{{noteDetail.noteContent}}</div>
     </v-card-text>
     <v-card-actions>

@@ -1,24 +1,24 @@
 <template>
-  <div class="note-card-actions">
-      <v-layout row wrap>
-        <v-flex xs2>
-          <v-tooltip bottom>
-            <v-btn slot="activator" small icon>
-              <v-icon small color="grey">mdi-reminder</v-icon>
-            </v-btn>
-            <span>提醒我</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2>
-          <v-tooltip bottom>
-            <v-btn slot="activator" small icon>
-              <v-icon small color="grey">mdi-account-plus</v-icon>
-            </v-btn>
-            <span>协作者</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2>
-          <v-tooltip bottom>
+  <div ref="noteCardActions" class="note-card-actions">
+    <v-layout row wrap>
+      <v-flex xs2>
+        <v-tooltip bottom>
+          <v-btn slot="activator" small icon>
+            <v-icon small color="grey">mdi-reminder</v-icon>
+          </v-btn>
+          <span>提醒我</span>
+        </v-tooltip>
+      </v-flex>
+      <v-flex xs2>
+        <v-tooltip bottom>
+          <v-btn slot="activator" small icon>
+            <v-icon small color="grey">mdi-account-plus</v-icon>
+          </v-btn>
+          <span>协作者</span>
+        </v-tooltip>
+      </v-flex>
+      <v-flex xs2>
+        <v-tooltip bottom>
           <v-btn @mouseenter="enter" @mouseleave="leave" slot="activator" small icon>
             <div v-if="show" class="color-selector white">
               <div @click="colorCheck(item)" :key="index" v-for="(item, index) of colorList" :class="['selector-item', item.color]">
@@ -27,44 +27,54 @@
             </div>
             <v-icon small color="grey">mdi-palette</v-icon>
           </v-btn>
-            <span>更改颜色</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2>
-          <v-tooltip bottom>
-            <v-btn slot="activator" small icon>
-              <v-icon small color="grey">image</v-icon>
-            </v-btn>
-            <span>添加图片</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2>
-          <v-tooltip bottom>
+          <span>更改颜色</span>
+        </v-tooltip>
+      </v-flex>
+      <v-flex xs2>
+        <v-tooltip bottom>
+          <v-btn slot="activator" small icon>
+            <v-icon small color="grey">image</v-icon>
+          </v-btn>
+          <span>添加图片</span>
+        </v-tooltip>
+      </v-flex>
+      <v-flex xs2>
+        <v-tooltip bottom>
           <v-btn @click="handleArchive" slot="activator" small icon>
             <v-icon small color="grey">mdi-package-down</v-icon>
           </v-btn>
           <span>归档</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs2>
-          <v-menu offset-y>
-            <v-btn slot="activator" small icon>
-              <v-icon color="grey">mdi-dots-vertical</v-icon>
-            </v-btn>
-            <v-list>
-              <v-list-tile  style="height: 36px;" @click="itemClick(item)" v-for="(item, index) in items" :key="index">
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </v-flex>
-      </v-layout>
+        </v-tooltip>
+      </v-flex>
+      <v-flex xs2>
+
+        <div v-if="showLabelPicker" class="label-picker">
+          <LabelPicker/>
+        </div>
+
+        <v-menu offset-y>
+          <v-btn slot="activator" small icon>
+            <v-icon color="grey">mdi-dots-vertical</v-icon>
+          </v-btn>
+          <v-list>
+            <v-list-tile :id="item.id" style="height: 36px;" @click="itemClick(item)" v-for="(item, index) in items" :key="index">
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
 <script>
+import LabelPicker from './LabelPicker'
+
 export default {
   name: 'note-card-actions',
+  components: {
+    LabelPicker
+  },
   data () {
     return {
       items: [
@@ -74,6 +84,7 @@ export default {
         { title: '复制', id: '03' }
       ],
       show: false,
+      showLabelPicker: false,
       colorList: [
         {
           id: 1,
@@ -134,6 +145,7 @@ export default {
     }
   },
   mounted () {
+    var me = this
     document.addEventListener('click', function () {
       console.log('click')
     })
@@ -181,6 +193,7 @@ export default {
           break
         case '02':
           console.log('添加标签')
+          me.showLabelPicker = true
           break
         default:
           console.warn('未能匹配到合适的操作')
@@ -198,7 +211,7 @@ export default {
 .color-selector {
   width: 160px;
   height: 120px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
   bottom: 25px;
   padding: 8px;
@@ -207,7 +220,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
-  transition: visibility 0s ease 0ms,opacity .218s linear;
+  transition: visibility 0s ease 0ms, opacity 0.218s linear;
 }
 .selector-item {
   width: 30px;
@@ -218,13 +231,20 @@ export default {
   border: 2px solid transparent;
 }
 .selector-item:hover {
-  border: 2px solid grey!important;
+  border: 2px solid grey !important;
 }
 .label-list {
   width: 200px;
   height: 300px;
   position: absolute;
   left: 200px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.label-picker {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid red;
+  position: absolute;
 }
 </style>

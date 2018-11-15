@@ -25,7 +25,8 @@ import {
   VBadge,
   VMenu,
   VForm,
-  VCheckbox
+  VCheckbox,
+  VChip
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -55,7 +56,8 @@ Vue.use(Vuetify, {
     VBadge,
     VMenu,
     VForm,
-    VCheckbox
+    VCheckbox,
+    VChip
   },
   theme: {
     primary: '#ee44aa',

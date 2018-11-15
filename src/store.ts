@@ -2,6 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+export interface Label {
+  id?: string,
+  labelName?: string,
+  tableName: string
+}
 export interface Note {
   id?: string,
   name?: string,
@@ -11,13 +16,10 @@ export interface Note {
   status?: string,
   color?: string,
   tableName: string,
-  isFixed?: true
+  isFixed?: true,
+  labelList: Array<Label>
 }
-export interface Label {
-  id?: string,
-  labelName?: string,
-  tableName: string
-}
+
 export interface State {
   noteList: Array<Note>,
   labelList: Array<Label>,

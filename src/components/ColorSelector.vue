@@ -1,22 +1,14 @@
 <template>
-  <div class="color-selector">
+  <div>
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'color-selector',
+  name: 'colorselector',
   data () {
     return {}
   }
 }
 </script>
-
-<style scoped>
-.color-selector {
-  width: 150px;
-  height: 120px;
-  background-color: grey;
-}
-</style>

@@ -56,7 +56,7 @@ export default {
       setTimeout(function () {
         me.updateLayout()
         window.addEventListener('resize', () => me.updateLayout(), false)
-      }, 2)
+      }, 1)
     },
     /**
      * @author jingchenxu2015@gmail.com
@@ -64,7 +64,11 @@ export default {
      */
     updateLayout () {
       let me = this
-      let items = me.$refs.waterfall.getElementsByClassName('item')
+      me.containerHeight = 200
+      let items
+      if (me.$refs.waterfall) {
+        items = me.$refs.waterfall.getElementsByClassName('item')
+      }
       me.items = items
       let width = document.body.clientWidth
       let heightList
@@ -137,6 +141,7 @@ export default {
         }
         y = me.heightList[2]
       }
+      // 计算容器高度
       if (y+this.items[index].offsetHeight+50 > me.containerHeight) {
         me.containerHeight = y+this.items[index].offsetHeight+50
       }
@@ -151,7 +156,7 @@ export default {
      */
     countPosition2 (index, x, y, itemHeight = 0) {
       let me = this
-
+      me.containerHeight = 200
       if (me._isOdd(index)) {
         x = 0
         if (index>0) {
@@ -183,6 +188,7 @@ export default {
      */
     countPosition1 (index, x, y, itemHeight = 0) {
       let me = this
+      me.containerHeight = 200
       x = 0
       if (index > 0) {
         me.heightList[0] = me.heightList[0] + itemHeight + 16
